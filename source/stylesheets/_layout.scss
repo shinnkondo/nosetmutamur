@@ -1,0 +1,45 @@
+@include establish-baseline;
+
+h1, h2, h3, h4, h5, h6 , p {
+    margin: 0px;
+}
+
+.page-headline, .article-headline {
+    @include adjust-font-size-to($display-1-font-size-base);
+    @include rhythm();
+
+    margin-left:  ceil(($layout-gutter-width / 2));
+    margin-right: floor(($layout-gutter-width / 2));
+}
+
+.page-content, .article-content {
+    > h2 {
+        @include adjust-font-size-to($headline-font-size-base);
+        @include rhythm();
+    }
+    > h3 {
+        @include adjust-font-size-to($title-font-size-base);
+        @include leader();
+    }
+    > p {
+        @include trailer();
+        @include hyphens(auto);
+    }
+}
+
+
+.page-footer {
+    border-top: 1px solid #eee;
+}
+$col-read-width-computed: 540px;
+.col-read {
+    display: flex;
+    @media (min-width: ($layout-breakpoint-sm)) {
+        width: $col-read-width-computed;
+        display: block;
+    }
+    background-color: #fff;
+    margin-left:  ceil(($layout-gutter-width / 2));
+    margin-right: floor(($layout-gutter-width / 2));
+    float: left;
+}
