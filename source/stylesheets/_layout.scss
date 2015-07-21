@@ -1,28 +1,61 @@
 @include establish-baseline;
 
-h1, h2, h3, h4, h5, h6 , p {
+h1, h2, h3, h4, h5, h6 , p, pre {
     margin: 0px;
+    font-weight: normal;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    font-family: $heading-font-family;
+}
+
+
+pre.highlight {
+    @include rhythm-borders(1px, 0.5);
+    @include trailer(0.5);
+    background-color: #F5F5F5;
+    overflow: auto;
+    code {
+        white-space: pre;
+        @include adjust-font-size-to(($body-font-size-base - 1));
+    }
+}
+
+.pack {
+    box-sizing: border-box;
+    margin-right: auto;
+    margin-left: auto;
+    padding: 0 $layout-gutter-width;
+    width: 100%;
+    @media (min-width: ($layout-breakpoint-sm)) {
+        width: 90%;    
+    }
+    @media (min-width: ($layout-breakpoint-md)) {
+        width: 85%;    
+    }
 }
 
 .page-headline, .article-headline {
     @include adjust-font-size-to($display-1-font-size-base);
     @include rhythm();
-
-    margin-left:  ceil(($layout-gutter-width / 2));
-    margin-right: floor(($layout-gutter-width / 2));
 }
 
 .page-content, .article-content {
+    > h2, h3 {
+        font-weight: bold;
+    }
     > h2 {
         @include adjust-font-size-to($headline-font-size-base);
-        @include rhythm();
+        @include leader(2);
+        @include trailer(1);
     }
     > h3 {
         @include adjust-font-size-to($title-font-size-base);
         @include leader();
+        @include trailer(0.5);
     }
     > p {
-        @include trailer();
+        @include trailer(0.5);
         @include hyphens(auto);
     }
 }
@@ -33,13 +66,9 @@ h1, h2, h3, h4, h5, h6 , p {
 }
 $col-read-width-computed: 540px;
 .col-read {
-    display: flex;
     @media (min-width: ($layout-breakpoint-sm)) {
-        width: $col-read-width-computed;
-        display: block;
+        width: $col-read-width-computed;    
     }
     background-color: #fff;
-    margin-left:  ceil(($layout-gutter-width / 2));
-    margin-right: floor(($layout-gutter-width / 2));
     float: left;
 }

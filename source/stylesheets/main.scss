@@ -1,8 +1,15 @@
+
+@import 
+    url(http://fonts.googleapis.com/css?family=Raleway:400),
+    url(http://fonts.googleapis.com/css?family=Roboto+Slab:400),
+    url(http://fonts.googleapis.com/css?family=Poiret+One);
+
 @import 
     "normalize", 
     "base", 
     "compass", 
     "_include/angular-material",
-    "layout",
-    "syntax-highlighting";
+    "bootstrap-wrapper",
+    "syntax-highlighting",
+    "layout";
 

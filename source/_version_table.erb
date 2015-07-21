@@ -1,0 +1,17 @@
+<% if ver %>
+<div ng-controller="CollapseVersionCtrl">
+  <md-button class="md-raised md-primary" ng-click="isCollapsed = !isCollapsed">Version</md-button>
+  <div id="version_detail" class="table-responsive" collapse="isCollapsed" flex>
+    <table class="table">
+      <tbody>
+        <% ver.each do |name, vernum| %>
+        <tr>
+          <td> <%= name %> </td>
+          <td> <%= vernum %> </td>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+<% end %>

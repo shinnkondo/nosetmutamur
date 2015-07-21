@@ -1,7 +1,8 @@
 ---
-title: "Review: Lisa the Painful RPG"
+title: "感想: Lisa the Painful RPG"
 date: 2015-07-20 07:46 UTC
 tags: game
+lang: ja
 ---
 
 最近、Steamでセール中だった[Lisa the painful RPG](http://store.steampowered.com/app/335670/)をプレイした。物語の退廃的な雰囲気と、自分や仲間の犠牲が避けられないゲームシステムがよく合った、面白いRPGだったと思う。

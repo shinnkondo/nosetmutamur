@@ -1,0 +1,57 @@
+---
+layout: article
+title: "using mathjax with jekyll"
+category: web
+tags: [math]
+type: memo
+lead: Power of LaTeX on HTML
+ver:
+    Jekyll: 3.0.0.pre.beta8
+    MathJax: 2.5
+---
+
+Although I have not been urged to use, I decided to itegrte MathJax to my blog.
+<!-- more -->
+
+
+
+## Instillation
+Installation was easy. Just to put the script in somewhere to read code from CDN. Although I am using Jekyll, I suppose that this could work with almost any web framework.
+
+```html
+<script type="text/javascript"
+    src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+```
+
+## Examples
+[Kramdown](http://kramdown.gettalong.org/index.html), the default MarkDown parser for Jekyll supports LaTeX math provided by MathJax.
+
+Of course, if you correctly escape notations, any expression work, but as long as you stick to what is supported by the parser, the only things you need to use are two `$$`.
+
+### Display Math
+
+Although it is unlikely that I would write about something as mathematic as it, here is an example of a "block" math:
+
+$$e^{\pi i}= 1$$
+
+Code for it is as follows:
+
+```latex
+$$e^{\pi i}= 1$$
+```
+
+### Inline Math
+
+But it is quite possble that I would argue about, say, the order of a specific functino. For example, <q>It is known that the expected order of _quick sort_ is $$O(n\cdot\log n)$$.</q>
+
+```latex
+<q>... is $$O(n\cdot\log n).</q>$$
+```
+
+### Things to Check
+
+- Equation numbers and reference
+- Complicated structures like matrices, cases, etc.
+
+<%= partial(:version_table, :locals => {:ver => current_page.data.ver}) %>

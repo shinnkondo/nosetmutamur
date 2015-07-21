@@ -1,4 +1,7 @@
 activate :livereload, :host => '127.0.0.1'
+activate :syntax
+
+set :markdown, :hard_wrap => false, :input => "GFM"
 
 set :layout, "page"
 
@@ -18,8 +21,7 @@ activate :blog do |blog|
   # blog.taglink = "tags/{tag}.html"
   blog.layout = "article"
   blog.summary_separator = "<!-- more -->"
-
-  # blog.summary_length = 250
+  blog.summary_length = -1
   # blog.year_link = "{year}.html"
   # blog.month_link = "{year}/{month}.html"
   # blog.day_link = "{year}/{month}/{day}.html"
@@ -79,11 +81,12 @@ page "/feed.xml", layout: false
 # activate :livereload
 
 # Methods defined in the helpers block are available in templates
-# helpers do
-#   def some_helper
-#     "Helping"
-#   end
-# end
+helpers do
+  require "titleize"
+  def titleize(str)
+    Titleize.titleize(str)
+  end
+end
 
 set :css_dir, 'stylesheets'
 
@@ -91,20 +94,36 @@ set :js_dir, 'javascripts'
 
 set :images_dir, 'images'
 
+
+# configure :development do
+# end
+
 # Build-specific configuration
 configure :build do
   # For example, change the Compass output style for deployment
-  # activate :minify_css
+  activate :minify_css
 
   # Minify Javascript on build
   # activate :minify_javascript
 
   # Enable cache buster
-  # activate :asset_hash
+  activate :asset_hash
 
   # Use relative URLs
   # activate :relative_assets
 
   # Or use a different image path
   # set :http_prefix, "/Content/images/"
-end
+
+  set :url_root, 'http://shinkondo.github.io/'
+  activate :search_engine_sitemap
+ end
+
+# activate :deploy do |deploy|
+#   deploy.method = :git
+#   # Optional Settings
+#   deploy.remote   = 'git@github.com:shinkondo/shinkondo.github.io.git' # remote name or git url, default: origin
+#   deploy.branch   = 'master' # default: gh-pages
+#   # deploy.strategy = :submodule      # commit strategy: can be :force_push or :submodule, default: :force_push
+#   # deploy.commit_message = 'custom-message'      # commit message (can be empty), default: Automated commit at `timestamp` by middleman-deploy `version`
+# end

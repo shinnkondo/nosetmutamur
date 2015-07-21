@@ -1,10 +1,8 @@
-<% wrap_layout :page do %>
-  <div layout-padding layout-margin>
-    <h1 class="article-headline"><%= current_article.title %></h1>
-    <div class="col-read">
-      <article class="article-content">
-        <%= yield %>
-      </article>
-    </div>
+<% wrap_layout  :page do %>
+  <h1 class="article-headline"><%= titleize current_article.title %></h1>
+  <div class="col-read" flex>
+    <article class="article-content">
+      <%= yield %>
+    </article>
   </div>
 <% end %>
