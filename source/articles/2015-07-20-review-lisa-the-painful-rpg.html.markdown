@@ -6,6 +6,7 @@ lang: ja
 ---
 
 最近、Steamでセール中だった[Lisa the painful RPG](http://store.steampowered.com/app/335670/)をプレイした。物語の退廃的な雰囲気と、自分や仲間の犠牲が避けられないゲームシステムがよく合った、面白いRPGだったと思う。
+
 <!-- more -->
 
 日本語版は今のところ存在しておらず、英語でのみプレイ可能。

@@ -23,21 +23,20 @@ pre.highlight {
 
 .pack {
     box-sizing: border-box;
-    margin-right: auto;
-    margin-left: auto;
     padding: 0 $layout-gutter-width;
-    width: 100%;
     @media (min-width: ($layout-breakpoint-sm)) {
-        width: 90%;    
+        
+        margin: 0 50px
     }
     @media (min-width: ($layout-breakpoint-md)) {
-        width: 85%;    
+        margin: 0 100px;    
     }
 }
 
 .page-headline, .article-headline {
     @include adjust-font-size-to($display-1-font-size-base);
-    @include rhythm();
+    @include leader(2);
+    @include trailer(1);
 }
 
 .page-content, .article-content {
@@ -62,6 +61,8 @@ pre.highlight {
 
 
 .page-footer {
+    @include leading-border(1px, 1);
+    @include leader(2);
     border-top: 1px solid #eee;
 }
 $col-read-width-computed: 540px;
