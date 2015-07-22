@@ -1,8 +1,7 @@
 <% wrap_layout  :page do %>
-
-<div class="pack">
+<div class="pack" lang="<%= current_article.lang %>">
   <h1 class="article-headline"><%= titleize current_article.title %></h1>
-  <div class="col-read" flex>
+  <div class="col-read" flex-sm>
     <article class="article-content">
       <%= yield %>
     </article>

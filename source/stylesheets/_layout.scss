@@ -50,12 +50,14 @@ pre.highlight {
 
 .page-content, .article-content {
     > h2, h3 {
-        font-weight: bold;
+        font-weight: normal;
     }
     > h2 {
         @include adjust-font-size-to($headline-font-size-base);
         @include leader(2);
-        @include trailer(1);
+        @include trailing-border(1px, 0.5);
+        @include trailer(0.5);
+        border-bottom-color: $colorGrayLighter;
     }
     > h3 {
         @include adjust-font-size-to($title-font-size-base);
