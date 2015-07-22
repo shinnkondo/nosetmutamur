@@ -1,6 +1,6 @@
 @include establish-baseline;
 
-h1, h2, h3, h4, h5, h6 , p, pre {
+h1, h2, h3, h4, h5, h6 , p, pre, ul {
     margin: 0px;
     font-weight: normal;
 }
@@ -9,10 +9,10 @@ h1, h2, h3, h4, h5, h6 {
     font-family: $heading-font-family;
 }
 
-// a {
-//     text-decoration: none;
+a {
+     text-decoration: none;
 //     @include link-colors($colorDeepPurple500, $colorDeepPurple400, $colorDeepPurple500, $colorDeepPurple800)
-// }
+}
 
 
 
@@ -26,19 +26,34 @@ pre.highlight {
         @include adjust-font-size-to(($body-font-size-base - 1));
     }
 }
-
+$pack-horizontal-margin: 30px;
 .pack {
     box-sizing: border-box;
     padding: 0 $layout-gutter-width;
     @media (min-width: ($layout-breakpoint-sm)) {
-        
-        margin: 0 50px
+        margin: 0 $pack-horizontal-margin;
     }
     @media (min-width: ($layout-breakpoint-md)) {
-        margin: 0 100px;    
+        margin: 0 $pack-horizontal-margin;   
+    }
+    @media (min-width: ($layout-breakpoint-md)) {
+        margin: 0 4 * $pack-horizontal-margin;   
     }
     .md-toolbar-tools {
         padding: 0;
+    }
+}
+.pack-right-open {
+    box-sizing: border-box;
+    padding-left: $layout-gutter-width;
+        @media (min-width: ($layout-breakpoint-sm)) {
+        margin-left: $pack-horizontal-margin;
+    }
+    @media (min-width: ($layout-breakpoint-md)) {
+        margin-left: $pack-horizontal-margin;   
+    }
+     @media (min-width: ($layout-breakpoint-md)) {
+        margin-left: 4 * $pack-horizontal-margin;   
     }
 }
 
@@ -71,13 +86,133 @@ pre.highlight {
 }
 
 
-
 $col-read-width-computed: 540px;
 .col-read {
     @media (min-width: ($layout-breakpoint-sm)) {
         width: $col-read-width-computed;    
     }
     background-color: #fff;
+}
+$col-side-width: ($layout-breakpoint-md - 4 * $layout-gutter-width - $pack-horizontal-margin - $col-read-width-computed);
+
+.col-side {
+  margin-left: 3 * $layout-gutter-width;
+  width: $col-side-width;
+}
+.table-of-contents {
+  box-sizing: border-box;
+    width: $col-side-width;
+}
+
+
+.table-of-contents {
+  // padding: 10px 25px 10px 10px;
+  // background-color: #fafafa;
+  // border: 1px solid $gray-lighter;
+  border-radius: $border-radius-base;
+}
+
+.table-of-contents.affix {
+  position: static;
+}
+
+/* Show and affix the side nav when space allows it */
+@media (min-width: $layout-breakpoint-md) {
+  .table-of-contents {
+    &.affix, &.affix-bottom {
+      width: $col-side-width;
+    }
+    &.affix {
+      position: fixed; /* Undo the static from mobile first approach */
+      top: 30px;
+    }
+    &.affix-bottom {
+    position: absolute; /* Undo the static from mobile first approach */
+    }
+  }
+}
+
+$link-focus-border: 1px;
+$nav-focus-border: 3px;
+$level-1-padding: 15px;
+$level-2-padding: 25px;
+/* All levels of nav */
+.table-of-contents .nav > li > a {
+    & {
+      display: block;
+      padding: 4px 0px 4px $level-1-padding;
+      font-size: ($base-font-size - 1px);
+      font-weight: 500;
+      color: $primary-color;
+      margin-bottom: 1px;
+    }
+    &:hover, &:focus{
+      padding-left: ($level-1-padding - $link-focus-border);
+      color: $primary-color-dark;
+      text-decoration: none;
+      background-color: transparent;
+      border-left: $link-focus-border solid $primary-color;
+  }
+}
+.table-of-contents .nav > .active {
+    &, &:hover, &:focus {
+        > a {
+          padding-left: ($level-1-padding - $nav-focus-border);
+          font-weight: bold;
+          color: $primary-color-dark;
+          background-color: transparent;
+          border-left: $nav-focus-border solid $primary-color;
+      }
+  }
+}
+
+/* Nav: second level (shown on .active) */
+.table-of-contents .nav .nav {
+  // display: none; /* Hide by default, but at >768px, show it */
+  padding-bottom: 5px;
+}
+.table-of-contents .nav .nav > li > a {
+  & { padding-top: 1px;
+      padding-bottom: 1px;
+      padding-left: $level-2-padding;
+      font-size: ($base-font-size - 2px);
+      font-weight: normal;
+  }
+  &:hover, &:focus {
+      padding-left: ($level-2-padding - $link-focus-border);
+  }
+}
+.table-of-contents .nav .nav > .active {
+    &, &:hover, &:focus {
+        > a {
+          padding-left: ($level-2-padding - $nav-focus-border);
+          font-weight: 500;
+      }
+    & > a {
+      border-left-style: double;
+    }
+    &:hover, &:focus {
+        > a {
+          border-left-style: solid;
+        }
+    }
+  }
+}
+.table-of-contents a.common-page-nav{
+  & {
+      text-align: center;
+      margin-top: 5px;
+      display: block;
+      padding: 4px 0px 4px;
+      font-size: ($base-font-size - 1px);
+      font-weight: 500;
+      color: $primary-color-light;
+    }
+    &:hover, &:focus{
+      color: $primary-color-dark;
+      text-decoration: none;
+      background-color: transparent;
+  }
 }
 
 .screen {

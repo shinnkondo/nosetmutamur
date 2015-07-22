@@ -15,8 +15,10 @@ $base-line-height: 26px;
         }
         > h2 {
             @include adjust-font-size-to($headline-font-size-base);
-            @include leader(2);
-            @include trailer(1);
+            @include leader(1.5);
+            padding-bottom: 3px;
+            border-bottom: 1px solid $colorGrayLighter;
+            margin-bottom: $base-line-height - 4px;
         }
         > h3 {
             @include adjust-font-size-to($title-font-size-base + 1);

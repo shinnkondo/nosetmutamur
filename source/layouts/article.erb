@@ -1,10 +1,18 @@
 <% wrap_layout  :page do %>
-<div class="pack" lang="<%= current_article.lang %>">
+<div class="pack-right-open" lang="<%= current_article.lang %>">
   <h1 class="article-headline"><%= titleize current_article.title %></h1>
+  <div layout="row"> 
   <div class="col-read" flex-sm>
     <article class="article-content">
       <%= yield %>
     </article>
   </div>
+  <aside class="col-side" hide-sm hide-md>
+    <div class="table-of-contents" id="toc" data-spy="affix" data-offset-top="150" data-offset-bottom="200">
+    </div>
+  </aside>
+  </div>
 </div>
 <% end %>
+
+
