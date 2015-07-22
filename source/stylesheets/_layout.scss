@@ -9,6 +9,12 @@ h1, h2, h3, h4, h5, h6 {
     font-family: $heading-font-family;
 }
 
+a {
+    text-decoration: none;
+    @include link-colors($colorDeepPurple500, $colorDeepPurple400, $colorDeepPurple500, $colorDeepPurple800)
+}
+
+
 
 pre.highlight {
     @include rhythm-borders(1px, 0.5);
@@ -30,6 +36,9 @@ pre.highlight {
     }
     @media (min-width: ($layout-breakpoint-md)) {
         margin: 0 100px;    
+    }
+    .md-toolbar-tools {
+        padding: 0;
     }
 }
 
@@ -59,12 +68,12 @@ pre.highlight {
     }
 }
 
-
 .page-footer {
     @include leading-border(1px, 1);
     @include leader(2);
     border-top: 1px solid #eee;
 }
+
 $col-read-width-computed: 540px;
 .col-read {
     @media (min-width: ($layout-breakpoint-sm)) {
@@ -72,4 +81,49 @@ $col-read-width-computed: 540px;
     }
     background-color: #fff;
     float: left;
+}
+
+.screen {
+    background-color: $colorBlueGrey500;
+    margin-bottom: 30px;
+}
+
+.site-logo {
+    font-family: 'Poiret One', cursive;
+    color: #fff;
+    font-size: 41px;
+    line-height: (41px * 43 / 56);
+    @media (min-width: ($layout-breakpoint-sm)) {
+        font-size: 68px;
+        line-height: (68px * 43 / 56);
+    }
+    @media (min-width: ($layout-breakpoint-md)) {
+        font-size: $display-4-font-size-base;
+        line-height: ($display-4-font-size-base * 43 / 56);
+    }
+}
+
+.home-button {
+    font-family: 'Poiret One', cursive;
+    font-size: $display-1-font-size-base;
+    color: #fff;
+}
+
+.index .home-button {
+    display: none;
+}
+
+a.gray-link {
+    text-decoration: none;
+    color: $colorGrayDark;
+    &:hover {
+        color: $colorGray;
+    }
+    &:visited {
+        color: $colorGrayLight;
+    }
+}
+
+.page-footer {
+    color: $colorGray
 }

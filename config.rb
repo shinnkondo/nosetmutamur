@@ -1,15 +1,14 @@
 activate :livereload, :host => '127.0.0.1'
 activate :syntax
-
 set :markdown, :hard_wrap => false, :input => "GFM"
 
 set :layout, "page"
-
+activate :i18n, :langs => [:en, :ja], :mount_at_root => false # すべての言語ファイル URL に prefix がつく
 ###
 # Blog settings
 ###
 
-  Time.zone = "America/Chicago"
+Time.zone = "America/Chicago"
 
 activate :blog do |blog|
   # This will add a prefix to all links, template references and source paths
@@ -17,15 +16,16 @@ activate :blog do |blog|
 
   # blog.permalink = "{year}/{month}/{day}/{title}.html"
   # Matcher for blog source files
-  blog.sources = "articles/{year}-{month}-{day}-{title}.html"
+  blog.sources = "articles/{year}-{month}-{day}-{title}.{lang}.html"
+  blog.permalink = "{lang}/{year}/{month}/{day}/{title}.html" 
   # blog.taglink = "tags/{tag}.html"
   blog.layout = "article"
   blog.summary_separator = "<!-- more -->"
   blog.summary_length = -1
-  # blog.year_link = "{year}.html"
-  # blog.month_link = "{year}/{month}.html"
-  # blog.day_link = "{year}/{month}/{day}.html"
-  # blog.default_extension = ".markdown"
+  # blog.year_link = "{lang}/{year}.html"
+  # blog.month_link = "{lang}/{year}/{month}.html"
+  # blog.day_link = "{lang}/{year}/{month}/{day}.html"
+  blog.default_extension = ".md"
 
   blog.new_article_template = "/cygdrive/c/home/git/nosetmutamur/source/_misc/article.tt"
 
@@ -41,15 +41,6 @@ end
 page "/feed.xml", layout: false
 
 ###
-# Compass
-###
-
-# Change Compass configuration
-# compass_config do |config|
-#   config.output_style = :compact
-# end
-
-###
 # Page options, layouts, aliases and proxies
 ###
 
@@ -57,14 +48,6 @@ page "/feed.xml", layout: false
 #
 # With no layout
 # page "/path/to/file.html", layout: false
-#
-# With alternative layout
-# page "/path/to/file.html", layout: :otherlayout
-#
-# A path which all have the same layout
-# with_layout :admin do
-#   page "/admin/*"
-# end
 
 # Proxy pages (http://middlemanapp.com/basics/dynamic-pages/)
 # proxy "/this-page-has-no-template.html", "/template-file.html", locals: {
@@ -77,10 +60,6 @@ page "/feed.xml", layout: false
 # Automatic image dimensions on image_tag helper
 # activate :automatic_image_sizes
 
-# Reload the browser automatically whenever files change
-# activate :livereload
-
-# Methods defined in the helpers block are available in templates
 helpers do
   require "titleize"
   def titleize(str)
@@ -89,11 +68,9 @@ helpers do
 end
 
 set :css_dir, 'stylesheets'
-
 set :js_dir, 'javascripts'
-
 set :images_dir, 'images'
-
+set :partials_dir, 'partials'
 
 # configure :development do
 # end
@@ -108,6 +85,11 @@ configure :build do
 
   # Enable cache buster
   activate :asset_hash
+
+# Change Compass configuration
+# compass_config do |config|
+#   config.output_style = :compact
+# end
 
   # Use relative URLs
   # activate :relative_assets

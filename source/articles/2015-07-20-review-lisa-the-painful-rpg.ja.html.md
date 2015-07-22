@@ -1,5 +1,5 @@
 ---
-title: "感想: Lisa the Painful RPG"
+title: "Review: Lisa the Painful RPG"
 date: 2015-07-20 07:46 UTC
 tags: game
 lang: ja
