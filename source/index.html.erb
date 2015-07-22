@@ -22,8 +22,12 @@ lang: en
       <md-list>
       <% page_articles.each_with_index do |article, i| %>
         <md-list-item class="md-2-line">
-          <div class="md-list-item-text">
-            <h3 class="md-title"><%= link_to titleize(article.title), article, :class => "gray-link" %></h3>
+          <div class="time-info">
+            <span class="day"><%= article.date.strftime('%e') %></span><br>
+            <span class="month-year"><%= article.date.strftime('%b, %Y') %></span>
+          </div>
+          <div class="md-list-item-text post-info">
+            <h3 class="post-info-title"><%= link_to titleize(article.title), article, :class => "gray-link" %></h3>
             <%= article.summary() %>
           </div>
         </md-list-item>

@@ -1,12 +1,16 @@
 
 // Overwrite Compass
 $base-font-size: 14px;
-$base-line-height: 22px;
-$rhythm-unit: "px";
+$base-line-height: 20px;
+$rhythm-unit: "rem";
 $round-to-nearest-half-line: true;
 
 // Overwrite ngMaterial
 $font-family: Verdana,'Helvetica Neue',"ヒラギノ角ゴ Pro W3","メイリオ","Meiryo",sans-serif;
+$list-header-line-height: 1.4em;
+
 
 // My own settings
 $heading-font-family: "Roboto Slab","ヒラギノ角ゴ Pro W3","メイリオ",serif;
+
+$display-font-family: 'Poiret One', cursive;
