@@ -3,7 +3,6 @@ title: "SCSSに書いたことが無視される時の解決法"
 category: web
 tags: [scss]
 type: memo
-lang: ja
 ver:
     Jekyll: 3.0.0.pre.beta8
     Sublime Text 3: Build 3083
@@ -31,7 +30,7 @@ $headings-font-family: "Roboto Condensed",　"ヒラギノ角ゴ Pro W3","メイ
 
 その後別の作業もしたので、フォントが反映されていないことに気づいた時には、原因の見当がつかなくなっていた。なにせFirefoxで見てみても、
 
-{% highlight scss%}
+```scss
 h1, h2, h3, h4, h5, h6,
 .h1, .h2, .h3, .h4, .h5, .h6 {
     font-family: $headings-font-family;
@@ -39,7 +38,7 @@ h1, h2, h3, h4, h5, h6,
     line-height: $headings-line-height;
     color: $headings-color;
 ...
-{% endhighlight %}
+```
 
 という風に見出し用の設定にまとまっているなかで、`font-family`の行だけすっぽり抜けていたのだ。
 

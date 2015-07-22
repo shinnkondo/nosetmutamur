@@ -1,9 +1,10 @@
-activate :livereload, :host => '127.0.0.1'
+activate :livereload, :host => '127.0.0.1', :no_swf => true
 activate :syntax
 set :markdown, :hard_wrap => false, :input => "GFM"
 
 set :layout, "page"
 activate :i18n, :langs => [:en, :ja], :mount_at_root => false # すべての言語ファイル URL に prefix がつく
+
 ###
 # Blog settings
 ###
@@ -16,7 +17,7 @@ activate :blog do |blog|
 
   # blog.permalink = "{year}/{month}/{day}/{title}.html"
   # Matcher for blog source files
-  blog.sources = "articles/{year}-{month}-{day}-{title}.{lang}.html"
+  blog.sources = "articles/{year}-{month}-{day}-{title}_{lang}.html"
   blog.permalink = "{lang}/{year}/{month}/{day}/{title}.html" 
   # blog.taglink = "tags/{tag}.html"
   blog.layout = "article"
@@ -27,7 +28,7 @@ activate :blog do |blog|
   # blog.day_link = "{lang}/{year}/{month}/{day}.html"
   blog.default_extension = ".md"
 
-  blog.new_article_template = "/cygdrive/c/home/git/nosetmutamur/source/_misc/article.tt"
+  blog.new_article_template = "source/_misc/article.tt"
 
   blog.tag_template = "tag.html"
   blog.calendar_template = "calendar.html"

@@ -24,7 +24,7 @@ I got an error when I was running Jekyll as a gulp task. I installed Jekyll on C
 ## Situation
 As I was trying out several framework, I found `browser-sync` very useful in Google Web Starter Kit. I decided to use it for my blog made with Jekyll. As a reference, I looked up [jekyll-gulp-sass-browser-sync](https://github.com/shakyShane/jekyll-gulp-sass-browser-sync) for install modules and gulp tasks. But when I ran `gulp jekyll-build`, I got this error.
 
-{% highlight sh %}
+```sh
 events.js:85
       throw er; // Unhandled 'error' event
             ^
@@ -36,17 +36,20 @@ Error: spawn ruy ENOENT
     at Function.Module.runMain (module.js:503:11)
     at startup (node.js:129:16)
     at node.js:814:3
-{%endhighlight%}
+```
+
 ## Solution
 [Running jekyll as a child process in Gulp/Node](http://stackoverflow.com/questions/21856861/running-jekyll-as-a-child-process-in-gulp-node) almost gave me the answer. This error occurs when gulp could not find the command. Unfortunately, maybe because I installed jekyll on cygwin, there was no `jekyll.bat` to replace `jekyll`. I decided to call ruby instead as follows:
 
-{% highlight javascript%}
+```javascript
 cp.spawn('ruby', ['<path to jekyll>', 'build'], {stdio: 'inherit'})
-{% endhighlight %}
+```
+
 instead of
-{% highlight js%}
+
+```js
 cp.spawn('<path to jekyll>', ['build'], {stdio: 'inherit'})
-{% endhighlight %}
+```
 
 It might be painful to update `gulpfile.js` everytime I update jekyll, but this would be easier and cleaner than adding something to PATH of Windows, as long as I stick to one project. And the problem is, even if it is added to the path, Windows would not excute a file without extension.
 
