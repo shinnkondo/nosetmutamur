@@ -7,5 +7,5 @@ var app = angular
             .accentPalette('deep-purple');
             });
 angular.module('NosApp').controller('CollapseVersionCtrl', function ($scope) {
-  $scope.isCollapsed = false;
+  $scope.isCollapsed = true;
 });
