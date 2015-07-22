@@ -1,0 +1,54 @@
+---
+title: "running jekyll as a gulp task on windows 7"
+category: web
+lead: "As always, there lies a problem at the border of UNIX and Windows."
+tags: [gulp, jekyll, cygwin]
+type: memo
+ver:     
+    Operating System: Windows 7
+    cygwin: 2.0.4
+    ruby: 2.2.2
+    jekyll: 3.0.0.pre.beta8
+    gulp: 3.9.0
+    browser-sync: 1.9.2
+---
+
+I got an error when I was running Jekyll as a gulp task. I installed Jekyll on Cygwin, and I got gulp using npm over node.js which I installed on Windows 7 natively. No wonder, the difference of the systems was the cause.
+
+<!-- more -->
+
+<%= partial(:version_table, :locals => {:ver => current_page.data.ver}) %>
+
+{% include version_info.html %}
+
+## Situation
+As I was trying out several framework, I found `browser-sync` very useful in Google Web Starter Kit. I decided to use it for my blog made with Jekyll. As a reference, I looked up [jekyll-gulp-sass-browser-sync](https://github.com/shakyShane/jekyll-gulp-sass-browser-sync) for install modules and gulp tasks. But when I ran `gulp jekyll-build`, I got this error.
+
+{% highlight sh %}
+events.js:85
+      throw er; // Unhandled 'error' event
+            ^
+Error: spawn ruy ENOENT
+    at exports._errnoException (util.js:746:11)
+    at Process.ChildProcess._handle.onexit (child_process.js:1053:32)
+    at child_process.js:1144:20
+    at process._tickCallback (node.js:355:11)
+    at Function.Module.runMain (module.js:503:11)
+    at startup (node.js:129:16)
+    at node.js:814:3
+{%endhighlight%}
+## Solution
+[Running jekyll as a child process in Gulp/Node](http://stackoverflow.com/questions/21856861/running-jekyll-as-a-child-process-in-gulp-node) almost gave me the answer. This error occurs when gulp could not find the command. Unfortunately, maybe because I installed jekyll on cygwin, there was no `jekyll.bat` to replace `jekyll`. I decided to call ruby instead as follows:
+
+{% highlight javascript%}
+cp.spawn('ruby', ['<path to jekyll>', 'build'], {stdio: 'inherit'})
+{% endhighlight %}
+instead of
+{% highlight js%}
+cp.spawn('<path to jekyll>', ['build'], {stdio: 'inherit'})
+{% endhighlight %}
+
+It might be painful to update `gulpfile.js` everytime I update jekyll, but this would be easier and cleaner than adding something to PATH of Windows, as long as I stick to one project. And the problem is, even if it is added to the path, Windows would not excute a file without extension.
+
+P.S. Installing node modules did not go well either (with gulp-sass). I decided to adapt package.json from Google Web Starter Kit(WSK) rather than to use the one from [jekyll-gulp-sass-browser-sync](https://github.com/shakyShane/jekyll-gulp-sass-browser-sync). It seemed like some of the packages from WSK were implicitly prerequisite for gulp-sass. Anyway, it worked with WSK.
+

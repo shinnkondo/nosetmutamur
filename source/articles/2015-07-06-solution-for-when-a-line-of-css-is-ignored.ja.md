@@ -1,0 +1,60 @@
+---
+title: "SCSSに書いたことが無視される時の解決法"
+category: web
+tags: [scss]
+type: memo
+lang: ja
+ver:
+    Jekyll: 3.0.0.pre.beta8
+    Sublime Text 3: Build 3083
+---
+この新しいブログを運営するにあたり、色々なフォントを試していたのだが、急にSCSSに書いたことが反映されなくなった。結局のところ、全角スペースが悪さをしていたようだ。
+
+<!-- more -->
+
+<%= partial(:version_table, :locals => {:ver => current_page.data.ver}) %>
+
+## 発端
+そもそもの発端は、見出しのフォントを変えようとしたことだった。[Google Developers](https://developers.google.com/web/fundamentals/)のサイトを見て、字幅が狭いフォントを使うのもいいかな、などと思ったのだ。そこで、見出しのフォント用の変数の、一つ目の要素を、
+
+{% highlight scss%}
+$headings-font-family: "Roboto Slub", "ヒラギノ角ゴ Pro W3","メイリオ",serif;
+{% endhighlight %}
+
+下記のように変更した。
+
+{% highlight scss%}
+$headings-font-family: "Roboto Condensed",　"ヒラギノ角ゴ Pro W3","メイリオ",serif;
+{% endhighlight %}
+
+学校で英作文を習った身としては、コンマの後にスペースがないのが気に食わなかったのか、コピペした後にスペースを意図せずに入れたようだ。
+
+その後別の作業もしたので、フォントが反映されていないことに気づいた時には、原因の見当がつかなくなっていた。なにせFirefoxで見てみても、
+
+{% highlight scss%}
+h1, h2, h3, h4, h5, h6,
+.h1, .h2, .h3, .h4, .h5, .h6 {
+    font-family: $headings-font-family;
+    font-weight: $headings-font-weight;
+    line-height: $headings-line-height;
+    color: $headings-color;
+...
+{% endhighlight %}
+
+という風に見出し用の設定にまとまっているなかで、`font-family`の行だけすっぽり抜けていたのだ。
+
+## どうやって原因に気づいたか
+最終的には変数を使わずに、直にフォントを一つだけ指定するとうまくいったので、なんとか全角スペースが問題だと気づくことができた。
+
+だが、そもそも日本語をあまり書く必要がないCSS上で日本語入力になっていて、しかもそれに気づかなかったのは問題だ。これは実は、Microsoft IMEからGoogle日本語入力に移ったのが一枚噛んでいる。未だに正確に把握していないが、英語と日本語が切り替わるタイミングが違って、英語をうとうとしているのに間違って日本語をうってしまうことが増えた。
+
+加えて、最近Sublime Text 3を使い出したのだが、海外産エディターの残念なところというべきか、全角スペースの扱いがあまりよろしくなかった。具体的には、全角スペースを表示しないばかりか、半角スペースと同じ幅の空白として見せるようになっていた。
+
+## 反省すべきこと
+結論としては、今回の問題が起こったのは
+
+3. コンマの後にスペースを入れるという（プログラマーにとっては）悪習慣を持っていた。
+1. 入力方法をソフト間で保持してしまうIMEに慣れていなかった
+2. エディターが、全角スペースにきちんと対処するようになっていなかった。
+
+あたりがいけなかったのだろう。1と2はまあ意図して慣れるようにするとして、3に関しては、Sublime Text 3にTrailingSpacesを入れて、<http://keidrun.tumblr.com/post/73033053898/tips-sublime-text-sublime-text>の「6. 全角スペースのハイライト」を参考に、全角スペースが見えるように設定した。これで当面のところは大丈夫だろう。

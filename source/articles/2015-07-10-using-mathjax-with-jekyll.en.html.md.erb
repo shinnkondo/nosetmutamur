@@ -1,20 +1,18 @@
 ---
-layout: article
-title: "using mathjax with jekyll"
+title: "Use MathJax with Markdown"
 category: web
 tags: [math]
 type: memo
-lead: Power of LaTeX on HTML
 ver:
     Jekyll: 3.0.0.pre.beta8
     MathJax: 2.5
 ---
 
-Although I have not been urged to use, I decided to itegrte MathJax to my blog.
+It is not that I need to write something mathematics on the web anytime soon. But since I am a <%= partial(:latex_logo, :locals => {:logo => "latex"}) %> user, it is always nice to check if it works in the same way in different type setting systems.
 
 <!-- more -->
 
-
+<%= partial(:version_table, :locals => {:ver => current_page.data.ver}) %>
 
 ## Instillation
 Installation was easy. Just to put the script in somewhere to read code from CDN. Although I am using Jekyll, I suppose that this could work with almost any web framework.
@@ -54,5 +52,3 @@ But it is quite possble that I would argue about, say, the order of a specific f
 
 - Equation numbers and reference
 - Complicated structures like matrices, cases, etc.
-
-<%= partial(:version_table, :locals => {:ver => current_page.data.ver}) %>
