@@ -68,11 +68,7 @@ pre.highlight {
     }
 }
 
-.page-footer {
-    @include leading-border(1px, 1);
-    @include leader(2);
-    border-top: 1px solid #eee;
-}
+
 
 $col-read-width-computed: 540px;
 .col-read {
@@ -80,7 +76,6 @@ $col-read-width-computed: 540px;
         width: $col-read-width-computed;    
     }
     background-color: #fff;
-    float: left;
 }
 
 .screen {
@@ -133,7 +128,7 @@ a.gray-link {
     .day {
         font-size: $display-1-font-size-base;
          @media (min-width: ($layout-breakpoint-sm)) {
-            font-size: $display-3-font-size-base;
+            font-size: $display-2-font-size-base;
         }
     }
     .month-year {
@@ -145,7 +140,11 @@ a.gray-link {
     }
 }
 
-
+.page-footer {
+    @include leading-border(1px, 1);
+    @include leader(2);
+    border-top: 1px solid #eee;
+}
 .page-footer {
     color: $colorGray;
 }
@@ -153,4 +152,30 @@ a.gray-link {
 .copy-right {
     font-family: 'Tangerine', cursive;
     font-size: $title-font-size-base;
+}
+
+
+// For LaTeX logo.
+.latex {
+  font-family: Times, "Times New Roman", serif; 
+  letter-spacing: 1px;
+}
+
+.latex sup {
+    top: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.85em;
+  vertical-align: 0.15em;
+  margin-left: -0.36em;
+  margin-right: -0.15em;
+}
+
+.latex sub {
+    bottom: 0;
+  text-transform: uppercase;
+  vertical-align: -0.5ex;
+  margin-left: -0.1667em;
+  margin-right: -0.125em;
+  font-size: 1em;
 }
