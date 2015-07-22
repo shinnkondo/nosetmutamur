@@ -17,6 +17,8 @@ gem "middleman-syntax"
 # String manupilation
 gem "titleize"
 
+gem 'middleman-gemoji'
+
 ### Deployment
 # gem 'middleman-deploy', '~> 1.0'
 gem 'middleman-search_engine_sitemap'
