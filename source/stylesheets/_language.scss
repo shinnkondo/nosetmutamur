@@ -3,13 +3,27 @@
 $base-font-size: 15px;
 $base-line-height: 26px;
 :lang(ja) {
-    .page-headline, .article-headline {
+    .page-headline {
         @include adjust-font-size-to($display-1-font-size-base);
         @include leader(2);
         @include trailer(1);
 
     }
+    .article-header {
+      @include leader(2);
+      @include trailer(1.5);
+      .article-headline {
+        @include adjust-font-size-to($display-1-font-size-base);
+        margin-bottom: 9px;
+    }
+    .lead {
+        @include adjust-font-size-to($subhead-font-size-base);
+        color: $colorGray;
+        font-family: $heading-font-family;
+    }
+    }
     .page-content, .article-content {
+        font-family: "ヒラギノ角ゴ Pro W3","メイリオ","Meiryo",sans-serif;
         > h2, h3 {
             font-weight: bold;
         }

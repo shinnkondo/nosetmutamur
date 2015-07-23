@@ -27,6 +27,10 @@ pre.highlight {
     }
 }
 $pack-horizontal-margin: 30px;
+$pack-offset-sm: $layout-gutter-width + $pack-horizontal-margin;
+$pack-offset-md: $layout-gutter-width + $pack-horizontal-margin;
+$pack-offset-lg: $layout-gutter-width + 4 * $pack-horizontal-margin;
+
 .pack {
     box-sizing: border-box;
     padding: 0 $layout-gutter-width;
@@ -36,31 +40,32 @@ $pack-horizontal-margin: 30px;
     @media (min-width: ($layout-breakpoint-md)) {
         margin: 0 $pack-horizontal-margin;   
     }
-    @media (min-width: ($layout-breakpoint-md)) {
+    @media (min-width: ($layout-breakpoint-lg)) {
         margin: 0 4 * $pack-horizontal-margin;   
     }
     .md-toolbar-tools {
         padding: 0;
     }
 }
-.pack-right-open {
-    box-sizing: border-box;
-    padding-left: $layout-gutter-width;
-        @media (min-width: ($layout-breakpoint-sm)) {
-        margin-left: $pack-horizontal-margin;
-    }
-    @media (min-width: ($layout-breakpoint-md)) {
-        margin-left: $pack-horizontal-margin;   
-    }
-     @media (min-width: ($layout-breakpoint-md)) {
-        margin-left: 4 * $pack-horizontal-margin;   
-    }
-}
 
-.page-headline, .article-headline {
+.page-headline {
     @include adjust-font-size-to($display-1-font-size-base);
     @include leader(2);
     @include trailer(1);
+}
+
+.article-header {
+  @include leader(2);
+   @include trailer(1.5);
+  .article-headline {
+    @include adjust-font-size-to($display-1-font-size-base);
+    margin-bottom: 9px;
+  }
+  .lead {
+    @include adjust-font-size-to($subhead-font-size-base);
+    color: $colorGray;
+    font-family: $heading-font-family;
+  }
 }
 
 .page-content, .article-content {
@@ -69,7 +74,7 @@ $pack-horizontal-margin: 30px;
     }
     > h2 {
         @include adjust-font-size-to($headline-font-size-base);
-        @include leader(2);
+        @include leader(1.5);
         @include trailing-border(1px, 0.5);
         @include trailer(0.5);
         border-bottom-color: $colorGrayLighter;
@@ -106,9 +111,9 @@ $col-side-width: ($layout-breakpoint-md - 4 * $layout-gutter-width - $pack-horiz
 
 
 .table-of-contents {
-  // padding: 10px 25px 10px 10px;
-  // background-color: #fafafa;
-  // border: 1px solid $gray-lighter;
+   padding: 10px 10px 10px 10px;
+   background-color: #fafafa;
+   border: 1px solid $gray-lighter;
   border-radius: $border-radius-base;
 }
 
@@ -217,25 +222,27 @@ $level-2-padding: 25px;
 
 .screen {
     background-color: $colorBlueGrey500;
-    margin-bottom: 30px;
+    // margin-bottom: 30px;
 }
-
+$site-logo-font-size-sm: ($layout-breakpoint-sm - 2 * $pack-offset-sm) /7;
+$site-logo-font-size-md: ($layout-breakpoint-md - 2 * $pack-offset-md) /7;
 .site-logo {
     font-family: $display-font-family;
     color: #fff;
     font-size: 41px;
-    line-height: (41px * 43 / 56);
+    line-height: floor(41px * 43 / 56);
     @media (min-width: ($layout-breakpoint-sm)) {
-        font-size: 68px;
-        line-height: (68px * 43 / 56);
+        font-size: $site-logo-font-size-sm;
+        line-height: floor($site-logo-font-size-sm * 43 / 56);
     }
     @media (min-width: ($layout-breakpoint-md)) {
-        font-size: $display-4-font-size-base;
-        line-height: ($display-4-font-size-base * 43 / 56);
+        font-size: $site-logo-font-size-md;
+        line-height: floor($site-logo-font-size-md * 47 / 62);
     }
 }
 
 .home-button {
+  line-height: 1;
     font-family: $display-font-family;
     font-size: $display-1-font-size-base;
     color: #fff;
