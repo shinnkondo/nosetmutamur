@@ -1,4 +1,25 @@
 <% wrap_layout  :page do %>
+<div lang="<%= current_article.lang %>">
+  <div class="article-top-nav" layout="row">
+    <div layout="row" layout-align="center center">
+      <md-button class="md-icon-button">
+        <md-icon class="material-icons">navigate_before</md-icon>
+      </md-button>
+      <div>
+        <span class="md-subhead"><%= blog.articles[0].title %></span>
+      </div>
+    </div>
+    <span flex></span>
+    <div layout="row" layout-align="center center">
+      <div>
+        <span class="md-subhead"><%= blog.articles[0].title %></span>
+      </div>
+      <md-button class="md-icon-button">
+        <md-icon class="material-icons">navigate_next</md-icon>
+      </md-button>
+    </div>
+  </div>
+</div>
 <div class="pack" lang="<%= current_article.lang %>">
   <div class="article-header">
     <% current_article.tags.each_with_index do |(tag, articles), i| %>

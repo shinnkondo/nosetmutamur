@@ -10,7 +10,7 @@ $base-line-height: 26px;
 
     }
     .article-header {
-      @include leader(2);
+      @include leader(0.5);
       @include trailer(1.5);
       .article-headline {
         @include adjust-font-size-to($display-1-font-size-base);

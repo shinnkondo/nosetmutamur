@@ -48,6 +48,22 @@ $pack-offset-lg: $layout-gutter-width + 4 * $pack-horizontal-margin;
     }
 }
 
+.article-top-nav {
+  .md-icon-button {
+    height: 96px;
+    width: 96px;
+    line-height: 96px;
+  }
+  md-icon {
+    height: 48px;
+    width: 48px;
+  } 
+  .material-icons{
+    font-size: 48px;
+
+  }
+}
+
 .page-headline {
     @include adjust-font-size-to($display-1-font-size-base);
     @include leader(2);
@@ -55,7 +71,7 @@ $pack-offset-lg: $layout-gutter-width + 4 * $pack-horizontal-margin;
 }
 
 .article-header {
-  @include leader(2);
+  @include leader(0.5);
    @include trailer(1.5);
   .article-headline {
     @include adjust-font-size-to($display-1-font-size-base);
