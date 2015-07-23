@@ -41,8 +41,15 @@ $base-line-height: 26px;
         }
         > p {
             @include adjust-font-size-to($base-font-size);
+            @include leader(0.5);
             @include trailer(0.5);
+            &:first-child {
+          margin-top: 0;
         }
+        }
+    }
+    .article-info {
+         min-height: 2 * $base-line-height;
     }
 }
 

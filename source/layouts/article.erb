@@ -16,8 +16,19 @@
         <%= yield %>
       </article>
     </div>
-    <aside class="col-side" hide-sm hide-md>
-      <div class="table-of-contents" id="toc" data-spy="affix" data-offset-top="150" data-offset-bottom="200">
+    <aside class="col-side" hide-sm hide-md flux>
+      <div class="article-info">
+        <%= current_article.date.strftime('%b. %e, %Y') %>
+      </div>
+      <div class="article-info">
+        Tags: 
+        <% current_article.tags.each_with_index do |(tag, articles), i| %>
+          <%= "|" if i != 0 %>
+          <%= link_to "#{tag}", tag_path(tag) %>
+        <% end %>
+      </div>
+
+      <div class="table-of-contents" id="toc" data-spy="affix" data-offset-top="250" data-offset-bottom="200">
       </div>
     </aside>
   </div>

@@ -85,8 +85,15 @@ $pack-offset-lg: $layout-gutter-width + 4 * $pack-horizontal-margin;
         @include trailer(0.5);
     }
     > p {
+        @include leader(0.5);
         @include trailer(0.5);
         @include hyphens(auto);
+        &:first-child {
+          margin-top: 0;
+        }
+    }
+    > img {
+      width: 100%;
     }
 }
 
@@ -102,11 +109,23 @@ $col-side-width: ($layout-breakpoint-md - 4 * $layout-gutter-width - $pack-horiz
 
 .col-side {
   margin-left: 3 * $layout-gutter-width;
-  width: $col-side-width;
+  min-width: $col-side-width;
 }
+
+.article-info {
+  box-sizing: border-box;
+  border-top: 1px solid $colorGrayLighter;
+  color: $colorGray;
+  min-height: 2 * $base-line-height;
+  padding-top: 3px;
+  font-size: $caption-font-size-base;
+  font-style: italic;
+  // font-family: 'Tangerine', cursive;
+}
+
 .table-of-contents {
   box-sizing: border-box;
-    width: $col-side-width;
+    min-width: $col-side-width;
 }
 
 
@@ -125,7 +144,7 @@ $col-side-width: ($layout-breakpoint-md - 4 * $layout-gutter-width - $pack-horiz
 @media (min-width: $layout-breakpoint-md) {
   .table-of-contents {
     &.affix, &.affix-bottom {
-      width: $col-side-width;
+       min-width: $col-side-width;
     }
     &.affix {
       position: fixed; /* Undo the static from mobile first approach */
