@@ -5,7 +5,7 @@ set :markdown, :hard_wrap => false, :input => "GFM"
 set :layout, "page"
 activate :i18n, :langs => [:en, :ja], :mount_at_root => false # すべての言語ファイル URL に prefix がつく
 
-activate :gemoji, :size => 14
+activate :gemoji, :size => 18, :style => "vertical-align: middle"
 
 ###
 # Blog settings

@@ -19,9 +19,7 @@ I got an error when I was running Jekyll as a gulp task. I installed Jekyll on C
 
 <%= partial(:version_table, :locals => {:ver => current_page.data.ver}) %>
 
-{% include version_info.html %}
-
-## Situation
+## None of Gulp Task Runs
 As I was trying out several framework, I found `browser-sync` very useful in Google Web Starter Kit. I decided to use it for my blog made with Jekyll. As a reference, I looked up [jekyll-gulp-sass-browser-sync](https://github.com/shakyShane/jekyll-gulp-sass-browser-sync) for install modules and gulp tasks. But when I ran `gulp jekyll-build`, I got this error.
 
 ```sh
@@ -38,7 +36,7 @@ Error: spawn ruy ENOENT
     at node.js:814:3
 ```
 
-## Solution
+## Windows Cannot Find File Without Extention
 [Running jekyll as a child process in Gulp/Node](http://stackoverflow.com/questions/21856861/running-jekyll-as-a-child-process-in-gulp-node) almost gave me the answer. This error occurs when gulp could not find the command. Unfortunately, maybe because I installed jekyll on cygwin, there was no `jekyll.bat` to replace `jekyll`. I decided to call ruby instead as follows:
 
 ```javascript

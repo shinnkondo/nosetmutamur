@@ -1,16 +1,25 @@
 <% wrap_layout  :page do %>
-<div class="pack-right-open" lang="<%= current_article.lang %>">
-  <h1 class="article-headline"><%= titleize current_article.title %></h1>
-  <div layout="row"> 
-  <div class="col-read" flex-sm>
-    <article class="article-content">
-      <%= yield %>
-    </article>
+<div class="pack" lang="<%= current_article.lang %>">
+  <div class="article-header">
+    <% current_article.tags.each_with_index do |(tag, articles), i| %>
+          <%= "|" if i != 0 %>
+          <%= link_to "#{tag}".capitalize, tag_path(tag) %>
+    <% end %>
+    <h1 class="article-headline"><%= titleize current_article.title %></h1>
+    <% if current_page.data.lead %>
+    <span class="lead"><%= current_page.data.lead %></span>
+    <% end %>
   </div>
-  <aside class="col-side" hide-sm hide-md>
-    <div class="table-of-contents" id="toc" data-spy="affix" data-offset-top="150" data-offset-bottom="200">
+  <div layout="row"> 
+    <div class="col-read" flex-sm>
+      <article class="article-content">
+        <%= yield %>
+      </article>
     </div>
-  </aside>
+    <aside class="col-side" hide-sm hide-md>
+      <div class="table-of-contents" id="toc" data-spy="affix" data-offset-top="150" data-offset-bottom="200">
+      </div>
+    </aside>
   </div>
 </div>
 <% end %>
