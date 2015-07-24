@@ -113,6 +113,22 @@ $col-side-width: ($layout-breakpoint-md - 4 * $layout-gutter-width - $pack-horiz
   min-width: $col-side-width;
 }
 
+
+.nos-tabs {
+  list-style: none;
+  padding: 0;
+  overflow: auto;
+  > li {
+    > a {
+      margin: 0;
+      @include link-colors($primary-color, $primary-color-dark);
+      &.active {
+        border-bottom: 2px solid $primary-color
+      }
+    }
+  }
+}
+
 .article-info {
   box-sizing: border-box;
   border-top: 1px solid $colorGrayLighter;

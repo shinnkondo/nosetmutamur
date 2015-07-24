@@ -43,11 +43,12 @@ nosControllers.controller 'MyIndexCtrl', ['$scope', '$location', '$routeParams',
         .success (data) ->
             $scope.categories = data.categories
             $scope.categories.unshift 'all'
-
-            $scope.selectedIndex = () ->
-                if typeof $routeParams.category == "undefined"
-                    0
-                else
-                    $scope.categories.indexOf($routeParams.category)
-   
+        
+    $scope.$on '$routeChangeSuccess', (event, current) ->
+        $scope.current = 
+            if typeof $routeParams.category == "undefined"
+                'all'
+            else
+                $routeParams.category
+    $scope.isSelected = (cat) -> cat == $scope.current
     ]

@@ -16,14 +16,14 @@ lang: en
 </div>
 <div class="pack">
 
-  <div layout="row" layout-align="center" ng->
+  <div layout="row" layout-align="center" >
     <div flex-sm="100" flex-md="80" flex="66">
       <div ng-controller="MyIndexCtrl">
-      <md-tabs md-selected="selectedIndex()">
-        <md-tab ng-repeat="cat in categories">
-          <a href="#/{{cat}}">{{cat}}</a>
-        </md-tab>
-      </md-tabs>
+        <ul class="nos-tabs" layout="row">
+          <li ng-repeat="cat in categories">
+            <md-button href="#/{{cat}}" ng-class="{active:isSelected(cat)}">{{cat}}</md-button>  
+          </li>
+        </ul>
       </div>
       <md-list ng-view>
       <!-- start fall back for noscript / seo -->
