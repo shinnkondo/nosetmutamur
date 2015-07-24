@@ -15,8 +15,21 @@ lang: en
 </div>
 </div>
 <div class="pack">
-  <div layout="row" layout-align="center">
+
+  <div layout="row" layout-align="center" ng->
     <div flex-sm="100" flex-md="80" flex="66">
+      <div ng-controller="MyIndexCtrl">
+      <md-tabs md-selected="selectedIndex">
+        <md-tab md-on-select="onTabSelected('all')">
+          <a href="#/">All</a>
+        </md-tab> 
+        <% blog.articles.map do |article| article.data.category end.uniq.each_with_index do |cat, i| %>
+        <md-tab md-on-select="onTabSelected('<%=cat%>')">
+          <md-label><a href="#/<%=cat%>"><%=cat.capitalize%></a></md-label>
+        </md-tab> 
+        <% end %>
+      </md-tabs>
+      </div>
       <md-list ng-view>
       <!-- start fall back for noscript / seo -->
       <% page_articles.each_with_index do |article, i| %>

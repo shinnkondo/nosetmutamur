@@ -34,4 +34,10 @@ nosControllers.controller 'ArticleListCtrl', ['$scope', '$http', '$sce', '$route
     $scope.category = $routeParams.category
     $scope.param = $routeParams
 
+
+]
+
+nosControllers.controller 'MyIndexCtrl', ['$scope', '$location', ($scope, $location) ->
+    $scope.onTabSelected = (cat) ->
+        $location.url("/" + cat)
 ]
