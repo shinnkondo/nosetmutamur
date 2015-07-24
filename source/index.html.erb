@@ -11,15 +11,16 @@ lang: en
 <% end %>
 <div class="screen">
 <div class="pack">
-  <h1 class="md-display3 site-logo">Nos et Mutamur</h1>
+  <h1 class="md-display3 site-logo"><%= link_to 'Nos et Mutamur', '/index.html' %></h1>
 </div>
 </div>
 <div class="pack">
-  <div layout="row">
+  <div layout="row" layout-align="center">
     <div flex-sm="100" flex-md="80" flex="66">
-      <md-list>
+      <md-list ng-view>
+      <!-- start fall back for noscript / seo -->
       <% page_articles.each_with_index do |article, i| %>
-        <md-list-item class="md-2-line">
+        <md-list-item class="md-2-line" ng-hide="true">
           <div class="time-info">
             <span class="day"><%= article.date.strftime('%e') %></span><br>
             <span class="month-year"><%= article.date.strftime('%b, %Y') %></span>
@@ -30,6 +31,7 @@ lang: en
           </div>
         </md-list-item>
       <% end %>
+      <!-- end fall back for noscript / seo -->
       </md-list>
     </div>
   </div>

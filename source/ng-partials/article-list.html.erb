@@ -1,0 +1,24 @@
+---
+layout: false
+---
+<!-- get tags for articles belongs to category. -->
+<% blog.articles.map do |article| article.data.category end.uniq.map do |cat| %>
+    <md-button class="md-primary" href="#/<%=cat%>" ng-class="'active': category === '<%=cat%>'" ><%=cat.capitalize%></md-button>
+<% end %>
+<md-tabs md-selected="selectedTab()">
+    <% blog.articles.map do |article| article.data.category end.uniq.each_with_index do |cat, i| %>
+    <md-tab>
+            <md-label><a href="#/<%=cat%>"><%=cat.capitalize%></a></md-label>
+    </md-tab> 
+<% end %>
+</md-tabs>
+<md-list-item class="md-2-line" ng-repeat="article in articles | filter:{ $:category }">
+    <div class="time-info">
+        <span class="day">{{ article.date | date:'d' }}</span><br>
+        <span class="month-year">{{ article.date | date:'MMM, yyyy' }}</span>
+    </div>
+    <div class="md-list-item-text post-info">
+        <h3 class="post-info-title"><a href="{{ article.url }}" class="gray-link">{{ article.title}}</a></h3>
+        <div ng-bind-html="article.summary"></div>
+    </div>
+</md-list-item>

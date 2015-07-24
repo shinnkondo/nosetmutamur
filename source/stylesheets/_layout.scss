@@ -14,6 +14,7 @@ a {
 //     @include link-colors($colorDeepPurple500, $colorDeepPurple400, $colorDeepPurple500, $colorDeepPurple800)
 }
 
+body.index {overflow-y:scroll;}
 
 
 pre.highlight {
@@ -241,7 +242,7 @@ $level-2-padding: 25px;
 
 .screen {
     background-color: $colorBlueGrey500;
-    // margin-bottom: 30px;
+    margin-bottom: 30px;
 }
 $site-logo-font-size-sm: ($layout-breakpoint-sm - 2 * $pack-offset-sm) /7;
 $site-logo-font-size-md: ($layout-breakpoint-md - 2 * $pack-offset-md) /7;
@@ -257,6 +258,9 @@ $site-logo-font-size-md: ($layout-breakpoint-md - 2 * $pack-offset-md) /7;
     @media (min-width: ($layout-breakpoint-md)) {
         font-size: $site-logo-font-size-md;
         line-height: floor($site-logo-font-size-md * 47 / 62);
+    }
+    a:visited {
+    color: #fff;
     }
 }
 
