@@ -68,6 +68,18 @@ helpers do
   def titleize(str)
     Titleize.titleize(str)
   end
+
+  def serialize(articles)
+    articles.map.with_index do |article, i| { id: i, title: article.title, data: article.data, tags: article.tags, lang: article.lang, date: article.date, published?: article.published?, url: article.url, summary: article.summary} 
+    end.to_json
+  end
+
+  def metadata(articles)
+    c = articles.map do |article|
+      article.data.category
+    end.uniq
+    {categories: c}.to_json
+  end
 end
 
 set :css_dir, 'stylesheets'
