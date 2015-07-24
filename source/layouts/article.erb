@@ -1,22 +1,20 @@
 <% wrap_layout  :page do %>
 <div lang="<%= current_article.lang %>">
   <div class="article-top-nav" layout="row">
+  <% link_to blog.articles[0] do %>
     <div layout="row" layout-align="center center">
-      <md-button class="md-icon-button">
         <md-icon class="material-icons">navigate_before</md-icon>
-      </md-button>
       <div>
         <span class="md-subhead"><%= blog.articles[0].title %></span>
       </div>
     </div>
+  <% end %>
     <span flex></span>
     <div layout="row" layout-align="center center">
       <div>
         <span class="md-subhead"><%= blog.articles[0].title %></span>
       </div>
-      <md-button class="md-icon-button">
         <md-icon class="material-icons">navigate_next</md-icon>
-      </md-button>
     </div>
   </div>
 </div>
@@ -55,5 +53,3 @@
   </div>
 </div>
 <% end %>
-
-
