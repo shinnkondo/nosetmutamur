@@ -17,3 +17,6 @@
 # Ignore .DS_store file
 .DS_Store
 Gemfile.lock
+nosetmutamur.sublime-project
+nosetmutamur.sublime-workspace
+rename.rb

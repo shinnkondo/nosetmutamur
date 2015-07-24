@@ -34,10 +34,4 @@ nosControllers.controller 'ArticleListCtrl', ['$scope', '$http', '$sce', '$route
     $scope.category = $routeParams.category
     $scope.param = $routeParams
 
-    $category_names = []
-    for a in articles
-        if ($.inArray(a.data.category, category_names) === -1)
-            category_names.push(a.data.category)
-
-
 ]

@@ -2,10 +2,7 @@
 layout: false
 ---
 <!-- get tags for articles belongs to category. -->
-<% blog.articles.map do |article| article.data.category end.uniq.map do |cat| %>
-    <md-button class="md-primary" href="#/<%=cat%>" ng-class="'active': category === '<%=cat%>'" ><%=cat.capitalize%></md-button>
-<% end %>
-<md-tabs md-selected="selectedTab()">
+<md-tabs>
     <% blog.articles.map do |article| article.data.category end.uniq.each_with_index do |cat, i| %>
     <md-tab>
             <md-label><a href="#/<%=cat%>"><%=cat.capitalize%></a></md-label>
