@@ -255,6 +255,10 @@ $level-2-padding: 25px;
       background-color: transparent;
   }
 }
+.site-header {
+  background-color: $primary-color;
+  color: #FFF;
+}
 
 .screen {
     background-color: $colorBlueGrey500;
@@ -267,6 +271,7 @@ $site-logo-font-size-md: ($layout-breakpoint-md - 2 * $pack-offset-md) /7;
     color: #fff;
     font-size: 41px;
     line-height: floor(41px * 43 / 56);
+    text-align: center;
     @media (min-width: ($layout-breakpoint-sm)) {
         font-size: $site-logo-font-size-sm;
         line-height: floor($site-logo-font-size-sm * 43 / 56);
@@ -277,6 +282,9 @@ $site-logo-font-size-md: ($layout-breakpoint-md - 2 * $pack-offset-md) /7;
     }
     a:visited {
     color: #fff;
+    }
+    a:focus {
+      outline: none; 
     }
 }
 

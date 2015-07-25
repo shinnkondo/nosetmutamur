@@ -14,17 +14,17 @@ lang: en
   <h1 class="md-display3 site-logo"><%= link_to 'Nos et Mutamur', '/index.html' %></h1>
 </div>
 </div>
-<div class="pack">
-  <div layout="row" layout-align="center" >
-    <div flex-sm="100" flex-md="80" flex="66">
+  <div layout="row" >
+    <div flex-sm="100" flex-md="75" flex="60" offset-sm="0" offset-md="10" offset-lg="15">
       <div ng-controller="MyIndexCtrl">
         <ul class="nos-tabs" layout="row">
           <li ng-repeat="cat in categories">
-            <md-button ng-href="#/{{cat}}" ng-class="{active:isSelected(cat)}">{{cat}}</md-button>  
+            <md-button ng-href="#/{{cat}}" ng-class="{active:isSelected(cat)}" ng-cloak>{{cat}}</md-button>  
           </li>
         </ul>
       </div>
-      <md-list ng-view>
+      <div class="view-container">
+      <md-list ng-view class="view-frame">
       <!-- start fall back for noscript / seo -->
       <% page_articles.each_with_index do |article, i| %>
         <md-list-item class="md-2-line" ng-hide="true">
@@ -38,9 +38,9 @@ lang: en
           </div>
         </md-list-item>
       <% end %>
-      <!-- end fall back for noscript / seo -->
       </md-list>
-    </div>
+      <!-- end fall back for noscript / seo -->
+      </div>
   </div>
 </div>
 

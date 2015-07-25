@@ -1,7 +1,7 @@
 ---
 layout: false
+ng: true
 ---
-<!-- get tags for articles belongs to category. -->
 <md-list-item class="md-2-line" ng-repeat="article in articles | filter:{ $:category }">
     <div class="time-info">
         <span class="day">{{ article.date | date:'d' }}</span><br>
