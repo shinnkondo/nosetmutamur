@@ -11,3 +11,12 @@ $('#toc').exTOC({
     numbering: false
 });
 $('body').scrollspy({ target: '#toc' });
+var initPos = $('#toc').position().top;
+$('#toc').affix({
+  offset: {
+    top: initPos,
+    bottom: function () {
+      return (this.bottom = $('.footer').outerHeight(true));
+    }
+  }
+});
