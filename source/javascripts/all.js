@@ -1,6 +1,4 @@
 //= require "_app"
 //= require angular-utils-pagination/dirPagination
-//= require "bootstrap/affix"
-//= require "bootstrap/scrollspy"
-//= require "bootstrap/transition"
+//= require "_include/ui-bootstrap-custom-0.13.0"
 

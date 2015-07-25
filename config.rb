@@ -8,7 +8,7 @@ activate :i18n, :langs => [:en, :ja], :mount_at_root => false # すべての言�
 activate :gemoji, :size => 18, :style => "vertical-align: middle"
 
 sprockets.append_path File.join root, 'bower_components'
-sprockets.import_asset "angular-utils-pagination"
+# sprockets.import_asset "angular-utils-pagination"
 
 # activate :sprockets, :debug_assets => true
 ###
@@ -105,7 +105,7 @@ configure :build do
   activate :minify_css
 
   # Minify Javascript on build
-  # activate :minify_javascript
+  activate :minify_javascript
 
   # Enable cache buster
   activate :asset_hash

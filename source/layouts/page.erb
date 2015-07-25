@@ -9,8 +9,6 @@
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular-sanitize.min.js"></script>
   <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.2/angular-route.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/0.10.1-rc3/angular-material.min.js"></script>
-  <%= javascript_include_tag  "ui-bootstrap-custom-0.13.0.min", "all" %>
-  <%= javascript_include_tag 'bootstrap.min', 'extoc_1_0'%>
-  <script >$('#toc').exTOC({ headFrom : 2, headTo : 5,insertMethod : 'prepend', contents: '.article-content', ulclass: "nav", offset: 5, numbering: false});</script>
-  <script>$('body').scrollspy({ target: '#toc' });</script>
+  <%= javascript_include_tag "all" %>
+  <%= if content_for?(:assets) then yield_content :assets end%>
 <% end %>
