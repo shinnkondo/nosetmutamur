@@ -1,20 +1,18 @@
 
-<md-toolbar class="site-header" class="md-default-theme">
+<md-toolbar class="site-header" class="md-default-theme" ng-controller="HeaderCtrl">
 <div class="pack">
   <div class="md-toolbar-tools">
     <%= link_to 'Nos et Mutamur', '/index.html', :class => 'home-button' %>
     <!-- fill up the space between left and right area -->
     <span flex></span>
     <% lang = current_page.metadata[:options][:lang] || current_page.data.lang %>
-    <md-button hide-sm href="<%= "/#{lang}/about.html" %>">About</md-button>
-    <md-menu hide show-sm>
-        <md-button ng-click="$mdOpenMenu()" class="md-icon-button" aria-label="Open sample menu">
-            <md-icon class="material-icons">menu</md-icon>
-        </md-button>
-        <md-menu-content>
-            <md-menu-item><md-button href="<%= "/#{lang}/about.html" %>">About</md-button></md-menu-item>
-        </md-menu-content>
-    </md-menu>
+    <div class="header-menu" collapse="isCollapsed" layout-sm="column">
+        <md-button href="<%= "/#{lang}/about.html" %>">About</md-button>
+        <md-button class="textasis" href="<%= "/#{theother(lang)}/about.html" %>"><%=theother(lang).capitalize%></md-button>
+    </div>
+    <button hide show-sm md-menu-origin class="lines-button x" type="button" role="button" aria-label="Toggle Navigation" ng-click="isclose = !isclose; isCollapsed= !isCollapsed"  ng-class="{close: isclose}">
+            <span class="lines"></span>
+        </button>
     </div>
 </div>
 </md-toolbar>

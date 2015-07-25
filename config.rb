@@ -80,6 +80,10 @@ helpers do
     end.uniq
     {categories: c}.to_json
   end
+
+  def theother(lang)
+    (lang == "ja")? "en" : "ja"
+  end
 end
 
 set :css_dir, 'stylesheets'

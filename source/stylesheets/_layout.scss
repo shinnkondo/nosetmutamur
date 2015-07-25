@@ -289,7 +289,34 @@ $level-2-padding: 25px;
 .site-header {
   background-color: $primary-color;
   color: #FFF;
+  .md-button {
+
+  }
 }
+
+.header-menu .md-button {
+  min-width: 0;
+}
+.header-menu.collapse {
+    @media (min-width: ($layout-breakpoint-sm)) {
+      display: block !important;
+      height: auto !important;
+    }
+}
+@media (max-width: ($layout-breakpoint-sm)) {
+  .header-menu {
+    position: absolute;
+    top: $toolbar-tools-height;
+    right: 0px;
+    background: $primary-color-light;
+    width: 100%;
+    .md-button {
+      text-transform: capitalize;
+    }
+  }
+}
+
+
 
 .screen {
     background-color: $colorBlueGrey500;
@@ -400,4 +427,12 @@ a.gray-link {
   margin-left: -0.1667em;
   margin-right: -0.125em;
   font-size: 1em;
+}
+
+.textasis {
+  text-transform: none !important;
+}
+
+.md-button {
+  font-family: $navigation-font-family;
 }

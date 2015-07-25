@@ -52,3 +52,8 @@ nosControllers.controller 'MyIndexCtrl', ['$scope', '$location', '$routeParams',
                 $routeParams.category
     $scope.isSelected = (cat) -> cat == $scope.current
     ]
+
+nosControllers.controller 'HeaderCtrl', ['$scope', ($scope) ->
+    $scope.isclose = false
+    $scope.isCollapsed = true
+]
