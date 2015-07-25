@@ -15,13 +15,12 @@ lang: en
 </div>
 </div>
 <div class="pack">
-
   <div layout="row" layout-align="center" >
     <div flex-sm="100" flex-md="80" flex="66">
       <div ng-controller="MyIndexCtrl">
         <ul class="nos-tabs" layout="row">
           <li ng-repeat="cat in categories">
-            <md-button href="#/{{cat}}" ng-class="{active:isSelected(cat)}">{{cat}}</md-button>  
+            <md-button ng-href="#/{{cat}}" ng-class="{active:isSelected(cat)}">{{cat}}</md-button>  
           </li>
         </ul>
       </div>
