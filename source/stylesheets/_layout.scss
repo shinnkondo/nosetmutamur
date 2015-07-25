@@ -27,6 +27,37 @@ pre.highlight {
         @include adjust-font-size-to(($body-font-size-base - 1));
     }
 }
+
+// adapted from bootstrap
+blockquote {
+  font-family: Raleway, serif;
+  margin: 0;
+  padding: 0 $base-line-height;
+  @include padding-leader(0.5);
+  @include padding-trailer(0.5);
+  @include trailer(1);
+  @include adjust-font-size-to($subhead-font-size-base);
+
+  border-left: 5px solid $colorGrayLighter;
+
+  p, ul, ol {
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  // Note: Deprecated small and .small as of v3.1.0
+  // Context: https://github.com/twbs/bootstrap/issues/11660
+  footer, small, .small {
+    display: block;
+    font-size: $base-font-size;
+    line-height: $base-line-height;
+    color: $colorGray;
+    &:before {
+      content: '\2014 \00A0'; // em dash, nbsp
+    }
+  }
+}
 $pack-horizontal-margin: 30px;
 $pack-offset-sm: $layout-gutter-width + $pack-horizontal-margin;
 $pack-offset-md: $layout-gutter-width + $pack-horizontal-margin;
