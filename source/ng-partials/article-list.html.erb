@@ -2,7 +2,8 @@
 layout: false
 ng: true
 ---
-<md-list-item class="md-2-line" ng-repeat="article in articles | filter:{ $:category }">
+<md-list>
+<md-list-item class="md-2-line" dir-paginate="article in articles | filter:{ $:category }  | itemsPerPage: 10">
     <div class="time-info">
         <span class="day">{{ article.date | date:'d' }}</span><br>
         <span class="month-year">{{ article.date | date:'MMM, yyyy' }}</span>
@@ -12,3 +13,7 @@ ng: true
         <div ng-bind-html="article.summary"></div>
     </div>
 </md-list-item>
+</md-list>
+<div class="text-center">
+    <dir-pagination-controls></dir-pagination-controls>
+</div>

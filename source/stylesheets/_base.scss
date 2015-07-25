@@ -2,7 +2,7 @@
 // Overwrite Compass
 $base-font-size: 14px;
 $base-line-height: 20px;
-$rhythm-unit: "px";
+$rhythm-unit: "px"; // If make this to em or rem, be careful with multilingual setting.
 $round-to-nearest-half-line: true;
 
 // Overwrite ngMaterial
@@ -14,7 +14,6 @@ $list-header-line-height: 1.4em;
 $heading-font-family: "Roboto Slab","ヒラギノ角ゴ Pro W3","メイリオ",serif;
 $display-font-family: 'Poiret One', cursive;
 $navigation-font-family: Arial,'Helvetica Neue',"ヒラギノ角ゴ Pro W3","メイリオ","Meiryo",sans-serif;
-
 
 $primary-color-light: $colorBlueGrey300;
 $primary-color: $colorBlueGrey500;

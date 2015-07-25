@@ -16,8 +16,13 @@
 
 # Ignore .DS_store file
 .DS_Store
+
 Gemfile.lock
-nosetmutamur.sublime-project
-nosetmutamur.sublime-workspace
-rename.rb
-transfer.rb
+
+# project files
+/*sublime*
+
+# scripts
+/scripts
+
+bower_components/

@@ -1,5 +1,5 @@
 app = angular
-    .module 'NosApp', ['ngMaterial', 'ui.bootstrap', 'ngSanitize', 'ngRoute', 'nosControllers']
+    .module 'NosApp', ['ngMaterial', 'ui.bootstrap', 'ngSanitize', 'ngRoute', 'nosControllers', 'angularUtils.directives.dirPagination']
 app.config ['$mdThemingProvider', ($mdThemingProvider) ->
         $mdThemingProvider
             .theme 'default'

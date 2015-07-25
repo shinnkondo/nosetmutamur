@@ -23,6 +23,7 @@ gem 'middleman-gemoji'
 # gem 'middleman-deploy', '~> 1.0'
 gem 'middleman-search_engine_sitemap'
 
+gem "bootstrap-sass", :require => false
 
 ### Development
 # For faster file watcher updates on Windows:

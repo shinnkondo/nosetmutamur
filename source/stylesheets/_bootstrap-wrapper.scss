@@ -1,10 +1,25 @@
 
-
+$brand-primary: $primary-color; 
 @import
-    "_include/variables",
-    "_include/mixins",
-    "_include/code",
-    "_include/tables",
-    "_include/navs",
-    "_include/responsive-embed",
-    "_include/component-animations"; // for collapse 
+    "bootstrap/variables",
+    "bootstrap/mixins",
+    "bootstrap/code",
+    "bootstrap/tables",
+    "bootstrap/navs",
+    "bootstrap/responsive-embed",
+    "bootstrap/component-animations", 
+    "bootstrap/pagination";
+
+// type.scss is imported partially and manually to prevent it from altering the entire contents.
+
+// Alignment
+.text-left           { text-align: left; }
+.text-right          { text-align: right; }
+.text-center         { text-align: center; }
+.text-justify        { text-align: justify; }
+.text-nowrap         { white-space: nowrap; }
+
+// Transformation
+.text-lowercase      { text-transform: lowercase; }
+.text-uppercase      { text-transform: uppercase; }
+.text-capitalize     { text-transform: capitalize; }

@@ -7,6 +7,10 @@ activate :i18n, :langs => [:en, :ja], :mount_at_root => false # すべての言�
 
 activate :gemoji, :size => 18, :style => "vertical-align: middle"
 
+sprockets.append_path File.join root, 'bower_components'
+sprockets.import_asset "angular-utils-pagination"
+
+# activate :sprockets, :debug_assets => true
 ###
 # Blog settings
 ###
@@ -91,8 +95,9 @@ set :js_dir, 'javascripts'
 set :images_dir, 'images'
 set :partials_dir, 'partials'
 
-# configure :development do
-# end
+configure :development do
+  set :debug_assets, true
+end
 
 # Build-specific configuration
 configure :build do

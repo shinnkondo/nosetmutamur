@@ -24,8 +24,10 @@ lang: en
         </ul>
       </div>
       <div class="view-container">
-      <md-list ng-view class="view-frame">
+        <div ng-view class="view-frame">
+        </div>
       <!-- start fall back for noscript / seo -->
+      <md-list>
       <% page_articles.each_with_index do |article, i| %>
         <md-list-item class="md-2-line" ng-hide="true">
           <div class="time-info">
