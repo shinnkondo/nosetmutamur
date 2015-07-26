@@ -89,7 +89,10 @@ helpers do
   def translation(url)
     m = /\/(en|ja)\//.match(url)
     if m
-      return url.gsub(/\/#{m[1]}\//, "/#{theother(m[1])}/")
+      alturl = url.gsub(/\/#{m[1]}\//, "/#{theother(m[1])}/")
+      if (sitemap.find_resource_by_destination_path(alturl))
+        return alturl
+      end
     end
   end
 end
