@@ -73,7 +73,7 @@ helpers do
   end
 
   def serialize(articles)
-    articles.map.with_index do |article, i| { id: i, title: Titleize.titleize(article.title), data: article.data, tags: article.tags, lang: article.lang, date: article.date, published?: article.published?, url: article.url, summary: article.summary} 
+    articles.map.with_index do |article, i| { id: i, title: Titleize.titleize(article.title), data: article.data, tags: article.tags.sort, lang: article.lang, date: article.date, published?: article.published?, url: article.url, summary: article.summary} 
     end.to_json
   end
     require 'set'
@@ -81,7 +81,7 @@ helpers do
   def metadata(articles)
     c = articles.map do |article|
       article.data.category
-    end.uniq
+    end.uniq.sort
     t = articles.reduce(Set.new()) do |p, n|
       p + n.tags
     end.to_a.sort

@@ -12,21 +12,34 @@ app.controller 'CollapseVersionCtrl',['$scope', ($scope) -> $scope.isCollapsed =
       
 nosControllers = angular.module('nosControllers', [])
 nosControllers.constant 'CAT', 'category'
-nosControllers.constant 'TAGS', 'tag'
-nosControllers.service 'search', ['$location', 'CAT', 'TAGS', ($location, CAT, TAGS)->
-    this.category = $location.search[CAT]
-    this.tags = $location.search[TAGS]
+nosControllers.constant 'TAG', 'tag'
+nosControllers.service 'search', ['$location', 'CAT', 'TAG', ($location, CAT, TAG)->
+    this.CAT = 'category'
+    this.TAG = 'tag'
+    this.ALL = 'ALL'
+    this.category = ()-> $location.search()[this.CAT]
+    this.tags = () -> $location.search()[this.TAG]
+    this.exposeConstants = ($scope) -> 
+        $scope[this.CAT]=this.CAT
+        $scope[this.TAG]=this.TAG
+        $scope[this.ALL]=this.ALL
+
 ]
 
 
 nosControllers.controller 'ArticleListCtrl',
-    ['$scope', '$http', '$sce', '$location',($scope, $http, $sce, $location) ->
+    ['$scope', '$http', '$sce', '$location','TAG', ($scope, $http, $sce, $location, TAG) ->
+        $scope.TAG = TAG
         $http.get '/articles.json', {'cache': true}
         .success (data) ->
             $scope.articles = data
             $scope.articles.summary = $sce.trustAsHtml $scope.articles.summary
         $scope.$on '$locationChangeSuccess', (event, current) ->
-            $scope.category = $location.search()['category']
+            $scope.category =
+                if $location.search()['category'] == "all"
+                    ""
+                else
+                    $location.search()['category']
 ]
 
 nosControllers.controller 'MyIndexCtrl',
