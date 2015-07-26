@@ -82,14 +82,10 @@ helpers do
     {categories: c}.to_json
   end
 
-  def theother(lang)
-    (lang.to_s == "ja")? "en" : "ja"
-  end
-
   def translation(url)
     m = /\/(en|ja)\//.match(url)
     if m
-      alturl = url.gsub(/\/#{m[1]}\//, "/#{theother(m[1])}/")
+      alturl = url.gsub(/\/(en|ja)\//, "/#{t :theotherlang}/")
       if (sitemap.find_resource_by_destination_path(alturl))
         return alturl
       end

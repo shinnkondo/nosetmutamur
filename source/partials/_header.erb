@@ -4,19 +4,14 @@
     <%= link_to 'Nos et Mutamur', '/index.html', :class => 'home-button' %>
     <!-- fill up the space between left and right area -->
     <span flex></span>
-    <% lang = current_page.metadata[:options][:lang] || current_page.data.lang %>
     <div class="header-menu" collapse="isCollapsed" layout-sm="column">
-        <md-button href="<%= "/#{lang}/reseach.html" %>">
-            <md-tooltip md-delay="200">Research</md-tooltip>
-            <md-icon md-font-set="material-icons">school</md-icon></md-button>
-        <md-button href="<%= "/#{lang}/about.html" %>">
-            <md-tooltip md-delay="200">About</md-tooltip>
-            <md-icon md-font-set="material-icons">info</md-icon></md-button>
+        <md-button href="<%= "/#{t :lang}/reseach.html" %>">Research</md-button>
+        <md-button href="<%= "/#{t :lang}/about.html" %>">About</md-button>
         <% alturl = translation(current_page.url) %>
         <% if alturl %>
         <md-button class="textasis" href="<%= alturl %>">
-            <md-tooltip md-delay="200">See <%=theother(lang).capitalize%> ver</md-tooltip>
-            <md-icon md-font-set="material-icons">public</md-icon></md-button>
+            <md-tooltip md-delay="200"><%= t :theotherlangfull%></md-tooltip>
+            <md-icon md-font-set="material-icons" ng-cloak>public</md-icon></md-button>
         <% end %>
     </div>
     <button hide show-sm md-menu-origin class="lines-button x" type="button" role="button" aria-label="Toggle Navigation" ng-click="isclose = !isclose; isCollapsed= !isCollapsed"  ng-class="{close: isclose}">
