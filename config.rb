@@ -8,7 +8,9 @@ activate :i18n, :langs => [:en, :ja], :mount_at_root => false # すべての言�
 activate :gemoji, :size => 18, :style => "vertical-align: middle"
 
 sprockets.append_path File.join root, 'bower_components'
-sprockets.import_asset 'animate.css-scss/animate.scss'
+# sprockets.import_asset 'animate.css-scss/animate.scss' do |logical_path|
+#   Pathname.new('_') + logical_path
+# end
 ###
 # Blog settings
 ###
@@ -19,7 +21,6 @@ activate :blog do |blog|
   # This will add a prefix to all links, template references and source paths
   # blog.prefix = "blog"
 
-  # blog.permalink = "{year}/{month}/{day}/{title}.html"
   # Matcher for blog source files
   blog.sources = "articles/{year}-{month}-{day}-{title}_{lang}.html"
   blog.permalink = "{lang}/{year}/{month}/{day}/{title}.html" 
@@ -34,8 +35,8 @@ activate :blog do |blog|
 
   blog.new_article_template = "source/_misc/article.tt"
 
-  blog.tag_template = "tag.html"
-  blog.calendar_template = "calendar.html"
+  # blog.tag_template = "tag.html"
+  # blog.calendar_template = "calendar.html"
 
   # Enable pagination
   # blog.paginate = true
@@ -75,12 +76,16 @@ helpers do
     articles.map.with_index do |article, i| { id: i, title: Titleize.titleize(article.title), data: article.data, tags: article.tags, lang: article.lang, date: article.date, published?: article.published?, url: article.url, summary: article.summary} 
     end.to_json
   end
+    require 'set'
 
   def metadata(articles)
     c = articles.map do |article|
       article.data.category
     end.uniq
-    {categories: c}.to_json
+    t = articles.reduce(Set.new()) do |p, n|
+      p + n.tags
+    end.to_a.sort
+    {categories: c, tags: t}.to_json
   end
 
   def translation(url)
