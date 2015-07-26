@@ -1,3 +1,11 @@
+// @import "animate.css-scss/animate.scss";
+
+@import 
+  "animate.css-scss/properties",
+  "animate.css-scss/_fading-entrances/fadeInLeftBig",
+  "animate.css-scss/_fading-exits/fadeOutRight"
+  ;
+  
 .view-container {
   position: relative;
 }
@@ -31,37 +39,18 @@ $transition: 0.4s;
   to { opacity: 0; }
 }
 
-.article-listing.ng-enter,
-.article-listing.ng-leave,
-.article-listing.ng-move {
-  @include transition-duration(0.2s);
-  @include transition-timing-function(ease);
-  @include transition-property(all);
+$article-transition: 0.3s;
+
+.article-listing.ng-enter{
+  @include animation(fadeInLeftBig $article-transition)
 }
 
-.article-listing.ng-enter,
 .article-listing.ng-move {
-  opacity: 0;
-  height: 0;
-  overflow: hidden;
-}
-
-.article-listing.ng-move.ng-move-active,
-.article-listing.ng-enter.ng-enter-active {
-  opacity: 1;
-  height: 120px;
+  @include animation(rubberBand $article-transition)
 }
 
 .article-listing.ng-leave {
-  opacity: 1;
-  overflow: hidden;
-}
-
-.article-listing.ng-leave.ng-leave-active {
-  opacity: 0;
-  height: 0;
-  padding-top: 0;
-  padding-bottom: 0;
+  @include animation(fadeOutRight $article-transition)
 }
 
 $button-size : 20px; 

@@ -17,7 +17,7 @@ lang: en
 <div layout="row" >
   <div flex-sm="100" flex-md="75" flex="60" offset-sm="0" offset-md="10" offset-lg="15">
     <div ng-controller="MyIndexCtrl">
-    {{loc | json}}
+    <!-- {{loc | json}} -->
       <ul class="nos-tabs" layout="row">
         <li ng-repeat="cat in categories">
           <md-button ng-href="/#?{{CAT}}={{cat}}" ng-click="tabClicked(cat)" ng-class="{active: isSelected(cat)}" ng-cloak>{{cat}}</md-button>
