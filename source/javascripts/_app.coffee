@@ -11,55 +11,71 @@ app.controller 'CollapseVersionCtrl',['$scope', ($scope) -> $scope.isCollapsed =
 
       
 nosControllers = angular.module('nosControllers', [])
-nosControllers.constant 'CAT', 'category'
-nosControllers.constant 'TAG', 'tag'
-nosControllers.service 'search', ['$location', 'CAT', 'TAG', ($location, CAT, TAG)->
-    this.CAT = 'category'
-    this.TAG = 'tag'
-    this.ALL = 'ALL'
-    this.category = ()-> $location.search()[this.CAT]
-    this.tags = () -> $location.search()[this.TAG]
-    this.exposeConstants = ($scope) -> 
-        $scope[this.CAT]=this.CAT
-        $scope[this.TAG]=this.TAG
-        $scope[this.ALL]=this.ALL
-
+nosControllers.factory 'search', ['$location', ($location)->
+    query = {}
+    query.CAT = 'category'
+    query.TAG = 'tag'
+    query.ALL = 'all'
+    query.query = {}
+    query.category = ()-> $location.search()[query.CAT]
+    query.tags = () -> $location.search()[query.TAG]
+    query.expose = (scope) ->
+        scope.CAT=query.CAT
+        scope.TAG=query.TAG
+        scope.ALL=query.ALL
+        scope.loc = () -> $location.search()
+        scope.search = (name,value) ->
+            if $location.search()[name] == value
+                $location.search(name,null)
+            else
+                $location.search(name,value)
+    query.search = (name, value) ->
+        temp = query.query[name]
+        if typeof temp != 'undefined'
+            if temp != value
+                if typeof temp != 'object'
+                    query.query[name] = {temp: null, value: null}
+                else
+                    temp[value] = null
+        else
+            query.query[name] = value
+        $location.search(name, value)
+    return query
 ]
 
 
 nosControllers.controller 'ArticleListCtrl',
-    ['$scope', '$http', '$sce', '$location','TAG', ($scope, $http, $sce, $location, TAG) ->
-        $scope.TAG = TAG
+    ['$scope', '$http', '$sce', 'search', ($scope, $http, $sce, search) ->
+        search.expose($scope)
         $http.get '/articles.json', {'cache': true}
         .success (data) ->
             $scope.articles = data
             $scope.articles.summary = $sce.trustAsHtml $scope.articles.summary
         $scope.$on '$locationChangeSuccess', (event, current) ->
             $scope.category =
-                if $location.search()['category'] == "all"
+                if search.category() == "all"
                     ""
                 else
-                    $location.search()['category']
+                    search.category()
+            $scope.tag = search.tags()
 ]
 
 nosControllers.controller 'MyIndexCtrl',
-    ['$scope', '$location','$http', 'search', 'CAT', ($scope, $location, $http, search, CAT) ->
-        ALL = 'all'
-        $scope.CAT = CAT
+    ['$scope', '$http', 'search', ($scope, $http, search) ->
+        search.expose($scope)
         $http.get '/metadata.json', {'cache': true}
             .success (data) ->
                 $scope.categories = data.categories
-                $scope.categories.unshift ALL
+                $scope.categories.unshift search.ALL
             
         $scope.$on '$locationChangeSuccess', (event, current) ->
-            $scope.loc = $location.search()
             $scope.current =
-                if $scope.loc.hasOwnProperty(CAT)
-                    $scope.loc[CAT]
+                if typeof search.category() == "undefined"
+                    search.ALL
                 else
-                    ALL
+                    search.category()
         $scope.isSelected = (cat) -> cat == $scope.current
-        $scope.tabClicked = (cat) -> $location.search(CAT, cat)
+        $scope.tabClicked = (cat) -> search.search(CAT, cat)
     ]
 
 nosControllers.controller 'HeaderCtrl', ['$scope', ($scope) ->
