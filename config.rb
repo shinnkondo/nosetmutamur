@@ -71,7 +71,7 @@ helpers do
   end
 
   def serialize(articles)
-    articles.map.with_index do |article, i| { id: i, title: article.title, data: article.data, tags: article.tags, lang: article.lang, date: article.date, published?: article.published?, url: article.url, summary: article.summary} 
+    articles.map.with_index do |article, i| { id: i, title: Titleize.titleize(article.title), data: article.data, tags: article.tags, lang: article.lang, date: article.date, published?: article.published?, url: article.url, summary: article.summary} 
     end.to_json
   end
 
