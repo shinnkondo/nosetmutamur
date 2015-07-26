@@ -4,50 +4,65 @@ per_page: 10
 lang: en
 ---
 <% if paginate && num_pages > 1 %>
-  <p>Page <%= page_number %> of <%= num_pages %></p>
-  <% if prev_page %>
-    <p><%= link_to 'Previous page', prev_page %></p>
-  <% end %>
+<p>Page <%= page_number %> of <%= num_pages %></p>
+<% if prev_page %>
+<p><%= link_to 'Previous page', prev_page %></p>
+<% end %>
 <% end %>
 <div class="screen">
-<div class="pack">
-  <h1 class="md-display3 site-logo"><%= link_to 'Nos et Mutamur', '/index.html' %></h1>
+  <div class="pack">
+    <h1 class="md-display3 site-logo"><%= link_to 'Nos et Mutamur', '/index.html' %></h1>
+  </div>
 </div>
-</div>
-  <div layout="row" >
-    <div flex-sm="100" flex-md="75" flex="60" offset-sm="0" offset-md="10" offset-lg="15">
-      <div ng-controller="MyIndexCtrl">
-        <ul class="nos-tabs" layout="row">
-          <li ng-repeat="cat in categories">
-            <md-button ng-href="#/{{cat}}" ng-class="{active:isSelected(cat)}" ng-cloak>{{cat}}</md-button>  
-          </li>
-        </ul>
-      </div>
-      <div class="view-container">
-        <div ng-view class="view-frame">
+<div layout="row" >
+  <div flex-sm="100" flex-md="75" flex="60" offset-sm="0" offset-md="10" offset-lg="15">
+    <div ng-controller="MyIndexCtrl">
+    {{loc | json}}
+      <ul class="nos-tabs" layout="row">
+        <li ng-repeat="cat in categories">
+          <md-button ng-href="/#?{{CAT}}={{cat}}" ng-click="tabClicked(cat)" ng-class="{active: isSelected(cat)}" ng-cloak>{{cat}}</md-button>
+        </li>
+      </ul>
+    </div>
+    <div class="view-container">
+      <div ng-cloak class="view-frame">
+        <md-list ng-controller="ArticleListCtrl">
+          <md-list-item class="md-2-line article-listing" dir-paginate="article in articles | filter:{ $:category }  | itemsPerPage: 10">
+            <div class="time-info">
+              <span class="day">{{ article.date | date:'d' }}</span><br>
+              <span class="month-year">{{ article.date | date:'MMM, yyyy' }}</span>
+            </div>
+            <div class="md-list-item-text post-info">
+              <h3 class="post-info-title"><a href="{{ article.url }}" class="gray-link">{{ article.title}}</a></h3>
+              <div ng-bind-html="article.summary"></div>
+            </div>
+          </md-list-item>
+        </md-list>
+        <div class="text-center">
+          <dir-pagination-controls></dir-pagination-controls>
         </div>
+      </div>
       <!-- start fall back for noscript / seo -->
       <md-list>
       <% page_articles.each_with_index do |article, i| %>
-        <md-list-item class="md-2-line" ng-hide="true">
-          <div class="time-info">
-            <span class="day"><%= article.date.strftime('%e') %></span><br>
-            <span class="month-year"><%= article.date.strftime('%b, %Y') %></span>
-          </div>
-          <div class="md-list-item-text post-info">
-            <h3 class="post-info-title"><%= link_to titleize(article.title), article, :class => "gray-link" %></h3>
-            <%= article.summary() %>
-          </div>
-        </md-list-item>
+      <md-list-item class="md-2-line" ng-hide="true">
+      <div class="time-info">
+        <span class="day"><%= article.date.strftime('%e') %></span><br>
+        <span class="month-year"><%= article.date.strftime('%b, %Y') %></span>
+      </div>
+      <div class="md-list-item-text post-info">
+        <h3 class="post-info-title"><%= link_to titleize(article.title), article, :class => "gray-link" %></h3>
+        <%= article.summary() %>
+      </div>
+      </md-list-item>
       <% end %>
       </md-list>
       <!-- end fall back for noscript / seo -->
-      </div>
+    </div>
   </div>
 </div>
-
 <% if paginate %>
-  <% if next_page %>
-    <p><%= link_to 'Next page', next_page %></p>
-  <% end %>
+<% if next_page %>
+<p><%= link_to 'Next page', next_page %></p>
+<% end %>
 <% end %>

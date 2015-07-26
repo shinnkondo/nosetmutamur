@@ -157,6 +157,9 @@ $col-side-width: ($layout-breakpoint-md - 4 * $layout-gutter-width - $pack-horiz
         border-bottom: 2px solid $primary-color
       }
     }
+    > button.active {
+        border-bottom: 2px solid $primary-color
+    }
   }
 }
 

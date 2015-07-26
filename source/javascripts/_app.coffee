@@ -7,50 +7,46 @@ app.config ['$mdThemingProvider', ($mdThemingProvider) ->
             .accentPalette 'deep-purple'
     ]
 
-app.controller 'CollapseVersionCtrl', ['$scope', ($scope) -> $scope.isCollapsed = true]
-
-
-app.config ['$routeProvider', ($routeProvider) ->
-    $routeProvider
-        .when '/all', {
-            templateUrl: 'ng-partials/article-list.html',
-            controller: 'ArticleListCtrl'
-        }
-        .when '/:category', {
-            templateUrl: 'ng-partials/article-list.html',
-            controller: 'ArticleListCtrl'
-             }
-        .otherwise {
-            templateUrl: 'ng-partials/article-list.html',
-            controller: 'ArticleListCtrl'
-        #     redirectTo: '/all'
-        }
-    ]
+app.controller 'CollapseVersionCtrl',['$scope', ($scope) -> $scope.isCollapsed = true]
 
       
 nosControllers = angular.module('nosControllers', [])
+nosControllers.constant 'CAT', 'category'
+nosControllers.constant 'TAGS', 'tag'
+nosControllers.service 'search', ['$location', 'CAT', 'TAGS', ($location, CAT, TAGS)->
+    this.category = $location.search[CAT]
+    this.tags = $location.search[TAGS]
+]
 
-nosControllers.controller 'ArticleListCtrl', ['$scope', '$http', '$sce', '$routeParams', ($scope, $http, $sce, $routeParams) ->
-    $http.get '/articles.json', {'cache': true}
+
+nosControllers.controller 'ArticleListCtrl',
+    ['$scope', '$http', '$sce', '$location',($scope, $http, $sce, $location) ->
+        $http.get '/articles.json', {'cache': true}
         .success (data) ->
             $scope.articles = data
             $scope.articles.summary = $sce.trustAsHtml $scope.articles.summary
-    $scope.category = $routeParams.category
+        $scope.$on '$locationChangeSuccess', (event, current) ->
+            $scope.category = $location.search()['category']
 ]
 
-nosControllers.controller 'MyIndexCtrl', ['$scope', '$location', '$routeParams','$http', '$route', ($scope, $location, $routeParams, $http, $route) ->
-    $http.get '/metadata.json', {'cache': true}
-        .success (data) ->
-            $scope.categories = data.categories
-            $scope.categories.unshift 'all'
-        
-    $scope.$on '$routeChangeSuccess', (event, current) ->
-        $scope.current = 
-            if typeof $routeParams.category == "undefined"
-                'all'
-            else
-                $routeParams.category
-    $scope.isSelected = (cat) -> cat == $scope.current
+nosControllers.controller 'MyIndexCtrl',
+    ['$scope', '$location','$http', 'search', 'CAT', ($scope, $location, $http, search, CAT) ->
+        ALL = 'all'
+        $scope.CAT = CAT
+        $http.get '/metadata.json', {'cache': true}
+            .success (data) ->
+                $scope.categories = data.categories
+                $scope.categories.unshift ALL
+            
+        $scope.$on '$locationChangeSuccess', (event, current) ->
+            $scope.loc = $location.search()
+            $scope.current =
+                if $scope.loc.hasOwnProperty(CAT)
+                    $scope.loc[CAT]
+                else
+                    ALL
+        $scope.isSelected = (cat) -> cat == $scope.current
+        $scope.tabClicked = (cat) -> $location.search(CAT, cat)
     ]
 
 nosControllers.controller 'HeaderCtrl', ['$scope', ($scope) ->
