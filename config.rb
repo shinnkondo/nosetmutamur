@@ -8,9 +8,6 @@ activate :i18n, :langs => [:en, :ja], :mount_at_root => false # すべての言�
 activate :gemoji, :size => 18, :style => "vertical-align: middle"
 
 sprockets.append_path File.join root, 'bower_components'
-# sprockets.import_asset "angular-utils-pagination"
-
-# activate :sprockets, :debug_assets => true
 ###
 # Blog settings
 ###
@@ -86,7 +83,14 @@ helpers do
   end
 
   def theother(lang)
-    (lang == "ja")? "en" : "ja"
+    (lang.to_s == "ja")? "en" : "ja"
+  end
+
+  def translation(url)
+    m = /\/(en|ja)\//.match(url)
+    if m
+      return url.gsub(/\/#{m[1]}\//, "/#{theother(m[1])}/")
+    end
   end
 end
 

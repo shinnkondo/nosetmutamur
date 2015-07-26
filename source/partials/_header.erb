@@ -1,4 +1,3 @@
-
 <md-toolbar class="site-header" class="md-default-theme" ng-controller="HeaderCtrl">
 <div class="pack">
   <div class="md-toolbar-tools">
@@ -8,7 +7,10 @@
     <% lang = current_page.metadata[:options][:lang] || current_page.data.lang %>
     <div class="header-menu" collapse="isCollapsed" layout-sm="column">
         <md-button href="<%= "/#{lang}/about.html" %>">About</md-button>
-        <md-button class="textasis" href="<%= "/#{theother(lang)}/about.html" %>"><%=theother(lang).capitalize%></md-button>
+        <% alturl = translation(current_page.url) %>
+        <% if alturl %>
+        <md-button class="textasis" href="<%= alturl %>"><%=theother(lang)%></md-button>
+        <% end %>
     </div>
     <button hide show-sm md-menu-origin class="lines-button x" type="button" role="button" aria-label="Toggle Navigation" ng-click="isclose = !isclose; isCollapsed= !isCollapsed"  ng-class="{close: isclose}">
             <span class="lines"></span>

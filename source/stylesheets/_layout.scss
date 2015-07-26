@@ -289,8 +289,8 @@ $level-2-padding: 25px;
 .site-header {
   background-color: $primary-color;
   color: #FFF;
-  .md-button {
-
+  .md-toolbar-tools {
+    font-size: $base-font-size;
   }
 }
 

@@ -1,11 +1,5 @@
-app = angular.module 'NosApp', [
-    'ngMaterial',
-    'ui.bootstrap',
-    'ngSanitize',
-    'ngRoute',
-    'nosControllers',
-    'angularUtils.directives.dirPagination'
-]
+app = angular
+    .module 'NosApp', ['ngMaterial', 'ui.bootstrap', 'ngSanitize', 'ngRoute', 'nosControllers', 'angularUtils.directives.dirPagination']
 app.config ['$mdThemingProvider', ($mdThemingProvider) ->
         $mdThemingProvider
             .theme 'default'
@@ -13,9 +7,7 @@ app.config ['$mdThemingProvider', ($mdThemingProvider) ->
             .accentPalette 'deep-purple'
     ]
 
-app.controller 'CollapseVersionCtrl', ['$scope', ($scope) ->
-    $scope.isCollapsed = true
-]
+app.controller 'CollapseVersionCtrl', ['$scope', ($scope) -> $scope.isCollapsed = true]
 
 
 app.config ['$routeProvider', ($routeProvider) ->
@@ -33,43 +25,33 @@ app.config ['$routeProvider', ($routeProvider) ->
             controller: 'ArticleListCtrl'
         #     redirectTo: '/all'
         }
-]
+    ]
 
       
 nosControllers = angular.module('nosControllers', [])
 
-nosControllers.controller 'ArticleListCtrl', [
-    '$scope',
-    '$http',
-    '$sce',
-    '$routeParams',
-    ($scope, $http, $sce, $routeParams) ->
-        $http.get '/articles.json', {'cache': true}
+nosControllers.controller 'ArticleListCtrl', ['$scope', '$http', '$sce', '$routeParams', ($scope, $http, $sce, $routeParams) ->
+    $http.get '/articles.json', {'cache': true}
         .success (data) ->
             $scope.articles = data
             $scope.articles.summary = $sce.trustAsHtml $scope.articles.summary
-            $scope.category = $routeParams.category
+    $scope.category = $routeParams.category
 ]
 
-nosControllers.controller 'MyIndexCtrl', [
-    '$scope',
-    '$location',
-    '$routeParams','$http',
-    '$route',
-    ($scope, $location, $routeParams, $http, $route) ->
+nosControllers.controller 'MyIndexCtrl', ['$scope', '$location', '$routeParams','$http', '$route', ($scope, $location, $routeParams, $http, $route) ->
     $http.get '/metadata.json', {'cache': true}
         .success (data) ->
             $scope.categories = data.categories
             $scope.categories.unshift 'all'
         
     $scope.$on '$routeChangeSuccess', (event, current) ->
-        $scope.current =
+        $scope.current = 
             if typeof $routeParams.category == "undefined"
                 'all'
             else
                 $routeParams.category
     $scope.isSelected = (cat) -> cat == $scope.current
-]
+    ]
 
 nosControllers.controller 'HeaderCtrl', ['$scope', ($scope) ->
     $scope.isclose = false
