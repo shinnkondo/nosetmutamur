@@ -18,7 +18,11 @@ nosControllers.factory 'search', ['$location', '$q', '$http', '$sce', ($location
     s.view = null
     s.CAT = 'category'
     s.TAG = 'tags'
+    s.LANG = 'lang'
     s.ALL = 'all'
+    langs = null
+    s.lang = ""
+    
 
     article_promise = $http.get '/articles.json', {'cache': true}
     article_promise.success (data) ->
@@ -30,6 +34,11 @@ nosControllers.factory 'search', ['$location', '$q', '$http', '$sce', ($location
     s.meta_promise = $http.get '/metadata.json', {'cache': true}
     s.meta_promise.success (data) ->
         s.filters.push PourOver.makeExactFilter(s.CAT, data.categories)
+        for lang in data.langs
+            re = new RegExp("/"+lang+"/")
+            if $location.absUrl().match(re)
+                s.lang =  lang
+        s.filters.push PourOver.makeExactFilter(s.LANG, data.langs)
         s.filters.push PourOver.makeInclusionFilter(s.TAG, data.tags)
     s.init_done = $q.all([article_promise, s.meta_promise])
     s.init_done.then () ->
@@ -37,6 +46,9 @@ nosControllers.factory 'search', ['$location', '$q', '$http', '$sce', ($location
         # update query by interpretting URL
         clear_or_update_query(s.CAT, s.category())
         clear_or_update_query(s.TAG, s.tags())
+        clear_or_update_query(s.LANG, s.lang)
+
+    
 
     ## Replace query value 'all' with an empty string
     clear_or_update_query = (name, value) ->
@@ -90,6 +102,10 @@ nosControllers.controller 'MyIndexCtrl',
         search.meta_promise.success (data) ->
             $scope.categories = data.categories
             $scope.categories.unshift search.ALL
+            $scope.categorylang = data.category_lang
+            $scope.hideCat = (cat) ->
+                search.lang != "" and cat != search.ALL and
+                !$scope.categorylang[cat][search.lang]
             
         $scope.$on '$locationChangeSuccess', (event, current) ->
             $scope.current =

@@ -7,7 +7,7 @@
     <div class="header-menu" collapse="isCollapsed" layout-sm="column">
         <md-button href="<%= "/#{t :lang}/reseach.html" %>">Research</md-button>
         <md-button href="<%= "/#{t :lang}/about.html" %>">About</md-button>
-        <% alturl = translation(current_page.url) %>
+        <% alturl = translation(current_page.destination_path) %>
         <% if alturl %>
         <md-button class="textasis" href="<%= alturl %>">
             <md-tooltip md-delay="200"><%= t :theotherlangfull%></md-tooltip>

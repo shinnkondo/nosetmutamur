@@ -22,7 +22,7 @@
         Tags: 
         <% current_article.tags.each_with_index do |(tag, articles), i| %>
           <%= "|" if i != 0 %>
-          <%= link_to "#{tag}", "/#?tag=#{tag}" %>
+          <%= link_to "#{tag} (#{blog.tags[tag].length})", "/#?tags=#{tag}" %>
         <% end %>
       </div>
 

@@ -90,16 +90,24 @@ helpers do
     c = articles.map do |article|
       article.data.category
     end.uniq.sort
+    l = articles.map do |article|
+      article.lang
+    end.uniq.sort
     t = articles.reduce(Set.new()) do |p, n|
       p + n.tags
     end.to_a.sort
-    {categories: c, tags: t}.to_json
+    cl = {}# whether to show category for a lang
+    articles.each do |article|
+      cl[article.data.category] ||= {} 
+      cl[article.data.category][article.lang] = true
+    end
+    {categories: c, langs: l, tags: t, category_lang: cl}.to_json
   end
 
   def translation(url)
-    m = /\/(en|ja)\//.match(url)
+    m = /(en|ja)\//.match(url)
     if m
-      alturl = url.gsub(/\/(en|ja)\//, "/#{t :theotherlang}/")
+      alturl = url.gsub(/(en|ja)\//, "/#{t :theotherlang}/")
       if (sitemap.find_resource_by_destination_path(alturl))
         return alturl
       end
