@@ -60,9 +60,12 @@ nosControllers.factory 'search', ['$location', '$q', '$http', '$sce', ($location
         clear_or_update_query(name, value)
         $location.search(name, value)
     s.toggleSearch = (name, value) ->
-        if $location.search()[name] == value
+        if s.isQueried(name, value)
             value = null
         s.search(name,value)
+
+    s.isQueried = (name, value) ->
+        $location.search()[name] == value
     return s
 ]
 
@@ -77,6 +80,8 @@ nosControllers.controller 'ArticleListCtrl',
         update = ()-> $scope.articles = search.getCurrentItems()
         $scope.tagClicked = (tag) ->
             search.toggleSearch(search.TAG, tag)
+        $scope.isActive = (tag) ->
+            search.isQueried(search.TAG, tag)
 ]
 
 nosControllers.controller 'MyIndexCtrl',

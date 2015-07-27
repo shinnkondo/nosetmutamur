@@ -369,6 +369,9 @@ a.gray-link {
     &:visited {
         color: #666;
     }
+    &.active{
+      font-weight: bold;
+    }
 }
 
 .time-info {
