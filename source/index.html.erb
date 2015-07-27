@@ -17,7 +17,6 @@ lang: en
 <div layout="row" >
   <div flex-sm="100" flex-md="75" flex="60" offset-sm="0" offset-md="10" offset-lg="15">
     <div ng-controller="MyIndexCtrl">
-    {{loc() | json}}, {{current | json}}
       <ul class="nos-tabs" layout="row">
         <li ng-repeat="cat in categories">
           <md-button ng-href="/#?{{CAT}}={{cat}}" ng-click="tabClicked(cat)" ng-class="{active: isSelected(cat)}" ng-cloak>{{cat}}</md-button>
@@ -27,7 +26,7 @@ lang: en
     <div class="view-container">
       <div ng-cloak class="view-frame">
         <md-list ng-controller="ArticleListCtrl">
-          <md-list-item class="md-2-line article-listing" dir-paginate="article in articles | filter:{ $:category}  | filter:{ $:tag} |itemsPerPage: 10">
+          <md-list-item class="md-2-line article-listing" dir-paginate="article in articles | itemsPerPage: 10">
             <div class="time-info">
               <span class="day">{{ article.date | date:'d' }}</span><br>
               <span class="month-year">{{ article.date | date:'MMM, yyyy' }}</span>
@@ -35,7 +34,7 @@ lang: en
             <div class="md-list-item-text post-info">
               <h3 class="post-info-title"><a href="{{ article.url }}" class="gray-link">{{ article.title}}</a></h3>
               <div ng-bind-html="article.summary"></div>
-              <span ng-repeat="tag in article.tags"><span ng-if="!$first"> | </span><a class="gray-link"  ng-click="search(TAG, tag)">{{tag}}</a></span>
+              <span ng-repeat="tag in article.tags"><span ng-if="!$first"> | </span><a class="gray-link"  ng-click="tagClicked(tag)">{{tag}}</a></span>
             </div>
           </md-list-item>
         </md-list>
