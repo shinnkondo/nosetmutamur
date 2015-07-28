@@ -2,7 +2,7 @@
 <div class="pack" lang="<%= current_article.lang %>">
   <div class="article-header">
     <% cat = current_article.data.category %>
-    <%= link_to "#{cat}".capitalize, "/#?category=#{cat}" %>
+    <%= link_to "#{cat}".upcase, "/#?category=#{cat}", class: "category" %>
     <h1 class="article-headline"><%= titleize current_article.title %></h1>
     <% if current_page.data.lead %>
     <span class="lead"><%= current_page.data.lead %></span>
@@ -14,7 +14,7 @@
         <%= yield %>
       </article>
     </div>
-    <aside class="col-side" hide-sm hide-md flux>
+    <aside class="col-side" hide-sm hide-md flex>
       <div class="article-info">
         <%= current_article.date.strftime('%b. %e, %Y') %>
       </div>

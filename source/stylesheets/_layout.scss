@@ -11,9 +11,11 @@ h1, h2, h3, h4, h5, h6 {
 
 a {
      text-decoration: none;
-//     @include link-colors($colorDeepPurple500, $colorDeepPurple400, $colorDeepPurple500, $colorDeepPurple800)
+    @include link-colors($secondary-color, $secondary-color-light, $secondary-color-light, $secondary-color-dark)
 }
-
+.md-toolbar-tools a {
+  color: inherit !important;
+}
 body.index {overflow-y:scroll;}
 
 
@@ -89,9 +91,13 @@ $pack-offset-lg: $layout-gutter-width + 4 * $pack-horizontal-margin;
 .article-header {
   @include leader(2);
    @include trailer(1.5);
+   .category {
+    font-weight: bold;
+   }
   .article-headline {
     @include adjust-font-size-to($display-1-font-size-base);
     margin-bottom: 9px;
+    font-weight: bold;
   }
   .lead {
     @include adjust-font-size-to($subhead-font-size-base);
@@ -176,7 +182,7 @@ $col-side-width: ($layout-breakpoint-md - 4 * $layout-gutter-width - $pack-horiz
 
 .table-of-contents {
   box-sizing: border-box;
-    min-width: $col-side-width;
+  width: $col-side-width;
 }
 
 
@@ -195,7 +201,7 @@ $col-side-width: ($layout-breakpoint-md - 4 * $layout-gutter-width - $pack-horiz
 @media (min-width: $layout-breakpoint-md) {
   .table-of-contents {
     &.affix, &.affix-bottom {
-       min-width: $col-side-width;
+       width: $col-side-width;
     }
     &.affix {
       position: fixed; /* Undo the static from mobile first approach */
@@ -445,6 +451,6 @@ a.tag {
   text-transform: none !important;
 }
 
-.md-button, .pagination, .md-label, .tag {
+.md-button, .pagination, .md-label, .tag, .category {
   font-family: $navigation-font-family;
 }

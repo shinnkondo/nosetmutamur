@@ -8,7 +8,7 @@ $('#toc').exTOC({
     contents: '.article-content',
     ulclass: "nav",
     offset: 5,
-    numbering: false
+    // numbering: false
 });
 $('body').scrollspy({ target: '#toc' });
 var initPos = $('#toc').position().top;
