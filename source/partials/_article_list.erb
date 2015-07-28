@@ -23,7 +23,7 @@
             <div class="md-list-item-text post-info">
               <h3 class="post-info-title"><a href="{{ article.url }}" class="gray-link">{{ article.title}}</a></h3>
               <div ng-bind-html="article.summary"></div>
-              <span ng-repeat="tag in article.tags"><span ng-if="!$first"> | </span><a class="gray-link tag" href="#" ng-click="tagClicked(tag)" ng-class="{active:isActive(tag)}">{{tag}}</a></span>
+              <span ng-repeat="tag in article.tags"><span ng-if="!$first"> | </span><a class="gray-link tag" ng-click="tagClicked(tag)" ng-class="{active:isActive(tag)}">{{tag}}</a></span>
             </div>
           </md-list-item>
         </md-list>
