@@ -128,7 +128,7 @@ end
 configure :build do
   # For example, change the Compass output style for deployment
   activate :minify_css
-  activate :minify_html
+  # activate :minify_html
   # Minify Javascript on build
   activate :minify_javascript
 
