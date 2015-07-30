@@ -26,4 +26,5 @@ Gemfile.lock
 /scripts
 
 bower_components/
+node_modules/
 bin/
