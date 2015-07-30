@@ -1,0 +1,10 @@
+- if ver
+  %div{"ng-controller" => "CollapseVersionCtrl"}
+    %md-button.md-raised.md-primary{"ng-click" => "isCollapsed = !isCollapsed"} Version Info
+    #version_detail.table-responsive{:collapse => "isCollapsed", :flex => ""}
+      %table.table
+        %tbody
+          - ver.each do |name, vernum|
+            %tr
+              %td= name
+              %td= vernum

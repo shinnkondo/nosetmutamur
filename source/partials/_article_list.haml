@@ -1,0 +1,38 @@
+.screen
+  .pack
+    %h1.md-display3.site-logo= link_to 'Nos et Mutamur', '/index.html'
+%div{:layout => "row"}
+  %div{:flex => "60", "flex-md" => "75", "flex-sm" => "100", "offset-lg" => "15", "offset-md" => "10", "offset-sm" => "0"}
+    %div{"ng-controller" => "MyIndexCtrl"}
+      %ul.nos-tabs{:layout => "row"}
+        %li{"ng-repeat" => "cat in categories"}
+          %md-button{"ng-class" => "{active: isSelected(cat)}", "ng-click" => "tabClicked(cat)", "ng-cloak" => "", "ng-hide" => "hideCat(cat)", "ng-href" => "#{current_page.url}#?{{CAT}}={{cat}}"} {{cat}}
+    %md-list{"ng-controller" => "ArticleListCtrl", "ng-cloak" => ""}
+      %md-list-item.md-2-line.article-listing{"dir-paginate" => "article in articles | itemsPerPage: 10"}
+        .time-info
+          %span.day {{ article.date | date:'d' }}
+          %br/
+          %span.month-year {{ article.date | date:'MMM, yyyy' }}
+        .md-list-item-text.post-info
+          %h3.post-info-title
+            %a.gray-link{:href => "{{ article.url }}"} {{ article.title}}
+          %div{"ng-bind-html" => "article.summary"}
+          %span{"ng-repeat" => "tag in article.tags"}
+            %span{"ng-if" => "!$first"} 
+              |
+            %a.gray-link.tag{"ng-class" => "{active:isActive(tag)}", "ng-click" => "tagClicked(tag)"} {{tag}}
+    .text-center
+      %dir-pagination-controls
+      / start fall back for noscript / seo
+      %md-list
+        - articles = (local)? blog.local_articles : page_articles
+        - articles.each_with_index do |article, i|
+          %md-list-item.md-2-line{"ng-hide" => "true"}
+            .time-info
+              %span.day= article.date.strftime('%e')
+              %br/
+              %span.month-year= article.date.strftime('%b, %Y')
+            .md-list-item-text.post-info
+              %h3.post-info-title= link_to titleize(article.title), article, :class => "gray-link"
+              = article.summary()
+      / end fall back for noscript / seo

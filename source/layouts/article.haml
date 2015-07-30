@@ -1,0 +1,22 @@
+- wrap_layout  :page do
+  .pack{:lang => current_article.lang}
+    .article-header
+      - cat = current_article.data.category
+      = link_to "#{cat}".upcase, "/#?category=#{cat}", class: "category"
+      %h1.article-headline= titleize current_article.title
+      - if current_page.data.lead
+        %span.lead= current_page.data.lead
+    %div{:layout => "row"}
+      .col-read{"flex-sm" => ""}
+        %article.article-content= yield
+      %aside.col-side{:flex => "", "hide-md" => "", "hide-sm" => ""}
+        .article-info
+          = current_article.date.strftime('%b. %e, %Y')
+        .article-info
+          Tags:
+          - current_article.tags.each_with_index do |(tag, articles), i|
+            = "|" if i != 0
+            = link_to "#{tag} (#{blog.tags[tag].length})", "/#?tags=#{tag}"
+        #toc.table-of-contents
+  - content_for :assets do
+    = javascript_include_tag "article"
