@@ -1,4 +1,31 @@
 <% wrap_layout  :page do %>
+<div lang="<%= current_article.lang %>">
+  <div class="article-top-nav" layout="row" layout-sm = "column">
+  <% if current_article.next_article %>
+  <% link_to current_article.next_article.url do %>
+    <div class="newer" layout="row" layout-align="start center">
+        <md-icon class="material-icons">navigate_before</md-icon>
+      <div>
+        <span class="md-subhead"><%= current_article.next_article.title %></span>
+      </div>
+    <span flex></span>
+    </div>
+  <% end %>
+  <% end %>
+  <span flex></span>
+  <% if current_article.previous_article %>
+  <% link_to current_article.previous_article.url do %>
+    <div class="older" layout="row" layout-align="end center">
+    <span flex></span>
+      <div>
+        <span class="md-subhead"><%= current_article.previous_article.title %></span>
+      </div>
+        <md-icon class="material-icons">navigate_next</md-icon>
+    </div>
+  <%end %>
+  <% end%>
+  </div>
+</div>
 <div class="pack" lang="<%= current_article.lang %>">
   <div class="article-header">
     <% cat = current_article.data.category %>
@@ -33,4 +60,4 @@
 <% content_for :assets do %>
 <%= javascript_include_tag "article" %>
 <% end %>
-<% end %>
+<% end%>

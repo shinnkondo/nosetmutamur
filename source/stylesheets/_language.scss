@@ -10,7 +10,7 @@ $base-line-height: 26px;
 
     }
     .article-header {
-      @include leader(2);
+      @include leader($article-header-leading-margin-lines);
       @include trailer(1.5);
       .article-headline {
         @include adjust-font-size-to($display-1-font-size-base);
@@ -21,6 +21,11 @@ $base-line-height: 26px;
         color: $colorGray;
         font-family: $heading-font-family;
     }
+    }
+    .article-info {
+      &:first-child {
+        margin-top: ($base-line-height - $base-font-size) / 2
+      }
     }
     .page-content, .article-content {
         font-family: "ヒラギノ角ゴ Pro W3","メイリオ","Meiryo",sans-serif;

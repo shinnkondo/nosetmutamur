@@ -82,6 +82,28 @@ $pack-offset-lg: $layout-gutter-width + 4 * $pack-horizontal-margin;
     }
 }
 
+.article-top-nav {
+  @include padding-leader(0.5);
+  .md-icon-button {
+    height: 96px;
+    width: 96px;
+    line-height: 96px;
+  }
+  md-icon {
+    height: 48px;
+    width: 48px;
+  } 
+  .material-icons{
+    font-size: 48px;
+  }
+  .newer {
+    margin-right: 15px;
+  }
+  .older {
+    margin-left: 15px;
+  }
+}
+
 .page-headline {
     @include adjust-font-size-to($display-1-font-size-base);
     @include leader(2);
@@ -89,7 +111,7 @@ $pack-offset-lg: $layout-gutter-width + 4 * $pack-horizontal-margin;
 }
 
 .article-header {
-  @include leader(2);
+  @include leader($article-header-leading-margin-lines);
    @include trailer(1.5);
    .category {
     font-weight: bold;
@@ -148,6 +170,7 @@ $col-side-width: ($layout-breakpoint-md - 4 * $layout-gutter-width - $pack-horiz
 .col-side {
   margin-left: 3 * $layout-gutter-width;
   min-width: $col-side-width;
+  margin-right: -1 * ($layout-gutter-width + $pack-horizontal-margin)
 }
 
 
@@ -178,6 +201,9 @@ $col-side-width: ($layout-breakpoint-md - 4 * $layout-gutter-width - $pack-horiz
   font-size: $caption-font-size-base;
   font-style: italic;
   // font-family: 'Tangerine', cursive;
+  &:first-child {
+    margin-top: ($base-line-height - $base-font-size) / 2
+  }
 }
 
 .table-of-contents {
