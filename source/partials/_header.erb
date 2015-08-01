@@ -4,7 +4,7 @@
     <%= link_to 'Nos et Mutamur', '/index.html', :class => 'home-button' %>
     <!-- fill up the space between left and right area -->
     <span flex></span>
-    <div class="header-menu" collapse="isCollapsed" layout-sm="column">
+    <div class="header-menu" collapse="!isMenuOpen" layout-sm="column">
         <md-button href="<%= "/#{t :lang}/about.html" %>">About</md-button>
         <% alturl = translation(current_page.destination_path) %>
         <% if alturl %>
@@ -13,7 +13,7 @@
             <md-icon md-font-set="material-icons" ng-cloak>public</md-icon></md-button>
         <% end %>
     </div>
-    <button hide show-sm md-menu-origin class="lines-button x" type="button" role="button" aria-label="Toggle Navigation" ng-click="isclose = !isclose; isCollapsed= !isCollapsed"  ng-class="{close: isclose}">
+    <button hide show-sm md-menu-origin class="lines-button x" type="button" role="button" aria-label="Toggle Navigation" ng-click="isMenuOpen = !isMenuOpen"  ng-class="{close: isMenuOpen}">
             <span class="lines"></span>
         </button>
     </div>
