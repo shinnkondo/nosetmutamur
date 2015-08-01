@@ -6,10 +6,10 @@
     <span flex></span>
     <div class="header-menu" collapse="!isMenuOpen" layout-sm="column">
         <md-button href="<%= "/#{t :lang}/about.html" %>">About</md-button>
-        <% alturl = translation(current_page.destination_path) %>
+        <% alturl = current_page.data.alturl || translation(current_page.destination_path) %>
         <% if alturl %>
         <md-button class="textasis" href="<%= alturl %>">
-            <md-tooltip md-delay="200"><%= t :theotherlangfull%></md-tooltip>
+            <md-tooltip md-delay="200"><%= current_page.data.altmsg || t(:theotherlangfull)%></md-tooltip>
             <md-icon md-font-set="material-icons" ng-cloak>public</md-icon></md-button>
         <% end %>
     </div>
