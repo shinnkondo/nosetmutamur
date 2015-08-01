@@ -32,18 +32,14 @@ module.exports = function(config){
     ],
 
     autoWatch : true,
-
     frameworks: ['jasmine'],
-
     browsers : ['Chrome', 'Firefox'],
-
     plugins : [
             'karma-chrome-launcher',
             'karma-firefox-launcher',
             'karma-jasmine',
             'karma-coffee-preprocessor'
             ],
-
     junitReporter : {
       outputFile: 'test_out/unit.xml',
       suite: 'unit'
