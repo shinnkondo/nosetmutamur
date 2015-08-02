@@ -184,6 +184,7 @@ hr.footer-separater { padding: 0;
 
 $col-read-width-computed: 540px;
 .col-read {
+    max-width: 100%;
     @media (min-width: ($layout-breakpoint-sm)) {
         width: $col-read-width-computed;    
     }
@@ -461,6 +462,7 @@ a.tag {
 .page-footer {
     @include leading-border(1px, 1);
     @include leader(2);
+    @include trailer(0.5);
     border-top: 1px solid #eee;
 }
 .page-footer {

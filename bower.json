@@ -16,7 +16,8 @@
     "angular-utils-pagination": "~0.8.3",
     "underscore": "~1.8.3",
     "angular-material": ">0.10.0",
-    "animate.css-scss": "~3.1.0"
+    "animate.css-scss": "~3.1.0",
+    "magnific-popup": "~1.0.0"
   },
   "devDependencies": {
     "angular": "1.4.x",
