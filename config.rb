@@ -139,13 +139,14 @@ set :partials_dir, 'partials'
 
 configure :development do
   set :debug_assets, true
+  Slim::Engine.set_default_options pretty: true
 end
 
 # Build-specific configuration
 configure :build do
   # For example, change the Compass output style for deployment
   activate :minify_css
-  # activate :minify_html
+  activate :minify_html
   # Minify Javascript on build
   activate :minify_javascript
 
