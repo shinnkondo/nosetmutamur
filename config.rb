@@ -8,6 +8,8 @@ activate :i18n, :langs => [:en, :ja], :mount_at_root => false # すべての言�
 activate :gemoji, :size => 18, :style => "vertical-align: middle"
 
 sprockets.append_path File.join root, 'bower_components'
+sprockets.append_path File.join root, 'bower_components/angular-material'
+
 
 Slim::Engine.disable_option_validator!
 # sprockets.import_asset 'animate.css-scss/animate.scss' do |logical_path|
