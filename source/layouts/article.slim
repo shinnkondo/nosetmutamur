@@ -27,8 +27,8 @@
         - if current_page.data.lead
           span.lead
             = current_page.data.lead
-      div[layout="row"]
-        .col-read[flex-sm]
+      div layout="column" layout-gt-md="row"
+        .col-read[flex-sm flex-order= "2" flex-order-gt-md= "1"]
           article.article-content
             == yield
           footer.article-footer
@@ -39,7 +39,7 @@
               ul
                 - ra.each do |a|
                   li= link_to a.title, a.url
-        aside.col-side[hide-sm hide-md flex]
+        aside.col-side[flex flex-order= "1" flex-order-gt-md= "2"]
           .article-info
             = current_article.date.strftime('%b. %e, %Y')
           .article-info
@@ -47,6 +47,6 @@
             - current_article.tags.each_with_index do |(tag, articles), i|
               = " | " if i != 0
               = link_to "#{tag} (#{blog.tags[tag].length})", "/#?tags=#{tag}"
-          #toc.table-of-contents
+          #toc.table-of-contents[hide show-gt-md]
   - content_for :assets do
     - javascript_include_tag "article"

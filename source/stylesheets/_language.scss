@@ -11,7 +11,10 @@ $base-line-height: 26px;
     }
     .article-header {
       @include leader($article-header-leading-margin-lines);
-      @include trailer(1.5);
+        @include trailer(.5);
+      @media (min-width: ($layout-breakpoint-md)) {
+        @include trailer(1.5);
+        }
       .article-headline {
         @include adjust-font-size-to($display-1-font-size-base);
         margin-bottom: 9px;

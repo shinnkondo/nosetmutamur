@@ -8,7 +8,7 @@ activate :i18n, :langs => [:en, :ja], :mount_at_root => false # すべての言�
 activate :gemoji, :size => 18, :style => "vertical-align: middle"
 
 sprockets.append_path File.join root, 'bower_components'
-sprockets.append_path File.join root, 'bower_components/angular-material'
+sprockets.append_path File.join root, 'bower_components/angular-material' # to read scss file, which is not in main in bower.json.
 
 
 Slim::Engine.disable_option_validator!

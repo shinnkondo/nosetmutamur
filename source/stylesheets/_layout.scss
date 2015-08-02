@@ -112,7 +112,10 @@ $pack-offset-lg: $layout-gutter-width + 4 * $pack-horizontal-margin;
 
 .article-header {
   @include leader($article-header-leading-margin-lines);
-   @include trailer(1.5);
+  @include trailer(.5);
+  @media (min-width: ($layout-breakpoint-md)) {
+    @include trailer(1.5);
+  }
    .category {
     font-weight: bold;
    }
@@ -464,14 +467,14 @@ a.tag {
     @include leader(2);
     @include trailer(0.5);
     border-top: 1px solid #eee;
-}
-.page-footer {
     color: $colorGray;
 }
 
 .copy-right {
-    font-family: 'Tangerine', cursive;
-    font-size: $title-font-size-base;
+  text-align: right;
+  font-family: 'Tangerine', cursive;
+  font-size: $title-font-size-base;
+  @include trailer(0.5);
 }
 
 
