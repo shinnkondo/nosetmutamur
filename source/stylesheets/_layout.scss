@@ -157,6 +157,30 @@ $pack-offset-lg: $layout-gutter-width + 4 * $pack-horizontal-margin;
     }
 }
 
+.article-footer {
+  ul {
+    @include trailer(0.5);
+    padding-left: 20px;
+  }
+}
+
+hr.footer-separater { padding: 0;
+  @include leader(3);
+  @include trailer(1);
+  border: none;
+  border-top: medium double $colorGrayLight;
+  color: $colorGrayLight;
+  text-align: center;
+  &:after {
+    content: "§";
+    display: inline-block;
+    position: relative;
+    top: -0.7em;
+    font-size: 1.5em;
+    padding: 0 0.25em;
+    background: white;
+  }
+} 
 
 $col-read-width-computed: 540px;
 .col-read {
@@ -478,6 +502,7 @@ a.tag {
   text-transform: none !important;
 }
 
-.md-button, .pagination, .md-label, .tag, .category {
+.md-button, .pagination, .md-label, .tag, .category, .md-headline {
   font-family: $navigation-font-family;
 }
+

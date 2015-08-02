@@ -29,9 +29,6 @@ $base-line-height: 26px;
     }
     .page-content, .article-content {
         font-family: "ヒラギノ角ゴ Pro W3","メイリオ","Meiryo",sans-serif;
-        > h2, h3 {
-            font-weight: bold;
-        }
         > h2 {
             @include adjust-font-size-to($headline-font-size-base);
             @include leader(1.5);
