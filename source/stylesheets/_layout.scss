@@ -208,6 +208,7 @@ $col-side-width: ($layout-breakpoint-md - 4 * $layout-gutter-width - $pack-horiz
   overflow: auto;
   > li {
     > a {
+      border-radius: 0;
       margin: 0;
       @include link-colors($primary-color, $primary-color-dark);
       &.active {
