@@ -17,7 +17,7 @@ I got an error when I was running Jekyll as a gulp task. I installed Jekyll on C
 
 <!-- more -->
 
-<%= partial(:version_table, :locals => {:ver => current_page.data.ver}) %>
+<%= partial('partials/version_table', :locals => {:ver => current_page.data.ver}) %>
 
 ## None of Gulp Task Runs
 As I was trying out several framework, I found `browser-sync` very useful in Google Web Starter Kit. I decided to use it for my blog made with Jekyll. As a reference, I looked up [jekyll-gulp-sass-browser-sync](https://github.com/shakyShane/jekyll-gulp-sass-browser-sync) for install modules and gulp tasks. But when I ran `gulp jekyll-build`, I got this error.

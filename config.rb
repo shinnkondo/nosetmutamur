@@ -1,4 +1,4 @@
-activate :livereload, :host => '127.0.0.1', :no_swf => true
+activate :livereload#, :host => '192.168.1.70', :no_swf => true
 activate :syntax
 set :markdown, :hard_wrap => false, :input => "GFM"
 
@@ -76,38 +76,6 @@ helpers do
     Titleize.titleize(str)
   end
 
-  def serialize(articles)
-    articles.map.with_index do |article, i| { 
-      title: Titleize.titleize(article.title), 
-      category: article.data.category, 
-      tags: article.tags.sort, 
-      lang: article.lang, 
-      date: article.date, 
-      url: article.url, 
-      summary: article.summary
-    } 
-    end.to_json
-  end
-    require 'set'
-
-  def metadata(articles)
-    c = articles.map do |article|
-      article.data.category
-    end.uniq.sort
-    l = articles.map do |article|
-      article.lang
-    end.uniq.sort
-    t = articles.reduce(Set.new()) do |p, n|
-      p + n.tags
-    end.to_a.sort
-    cl = {}# whether to show category for a lang
-    articles.each do |article|
-      cl[article.data.category] ||= {} 
-      cl[article.data.category][article.lang] = true
-    end
-    {categories: c, langs: l, tags: t, category_lang: cl}.to_json
-  end
-
   def translation(url)
     m = /(en|ja)\//.match(url)
     if m
@@ -117,31 +85,15 @@ helpers do
       end
     end
   end
-
-  # by the number of tags that is shared
-  def related_articles()
-    tag_counter = Hash.new(0)
-    current_article.tags.each do |t|
-      as = blog.local_articles.select do |a|
-        a.tags.include?(t) and a != current_article 
-      end.each do |a|
-        tag_counter[a] += 1
-      end
-    end
-    return tag_counter.keys.sort do |a, b|
-      tag_counter[b] <=> tag_counter[a]
-    end
-  end
 end
 
 set :css_dir, 'stylesheets'
 set :js_dir, 'javascripts'
 set :images_dir, 'images'
-set :partials_dir, 'partials'
 
 configure :development do
   set :debug_assets, true
-  Slim::Engine.set_default_options pretty: true
+  Slim::Engine.set_options pretty: true
 end
 
 # Build-specific configuration

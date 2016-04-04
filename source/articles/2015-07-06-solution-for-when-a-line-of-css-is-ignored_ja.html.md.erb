@@ -11,20 +11,20 @@ ver:
 
 <!-- more -->
 
-<%= partial(:version_table, :locals => {:ver => current_page.data.ver}) %>
+<%= partial('partials/version_table', :locals => {:ver => current_page.data.ver}) %>
 
 ## 発端
 そもそもの発端は、見出しのフォントを変えようとしたことだった。[Google Developers](https://developers.google.com/web/fundamentals/)のサイトを見て、字幅が狭いフォントを使うのもいいかな、などと思ったのだ。そこで、見出しのフォント用の変数の、一つ目の要素を、
 
-{% highlight scss%}
+```scss
 $headings-font-family: "Roboto Slub", "ヒラギノ角ゴ Pro W3","メイリオ",serif;
-{% endhighlight %}
+```
 
 下記のように変更した。
 
-{% highlight scss%}
+```scss
 $headings-font-family: "Roboto Condensed",　"ヒラギノ角ゴ Pro W3","メイリオ",serif;
-{% endhighlight %}
+```
 
 学校で英作文を習った身としては、コンマの後にスペースがないのが気に食わなかったのか、コピペした後にスペースを意図せずに入れたようだ。
 

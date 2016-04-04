@@ -8,13 +8,13 @@ ver:
     MathJax: 2.5
 ---
 
-It is not that I need to write something mathematics on the web anytime soon. But since I am a <%= partial(:latex_logo, :locals => {:logo => "latex"}) %> user, it is always nice to check if it works in the same way in different type setting systems.
+It is not that I need to write something mathematics on the web anytime soon. But since I am a <%= partial('partials/latex_logo', :locals => {:logo => "latex"}) %> user, it is always nice to check if it works in the same way in different type setting systems.
 
 <!-- more -->
 
-<%= partial(:version_table, :locals => {:ver => current_page.data.ver}) %>
+<%= partial('partials/version_table', :locals => {:ver => current_page.data.ver}) %>
 
-## Instillation
+## Installation
 Installation was easy. Just to put the script in somewhere to read code from CDN. Although I am using Jekyll, I suppose that this could work with almost any web framework.
 
 ```html
@@ -52,3 +52,8 @@ But it is quite possble that I would argue about, say, the order of a specific f
 
 - Equation numbers and reference
 - Complicated structures like matrices, cases, etc.
+
+
+<% content_for :assets do %>
+	<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<% end %>

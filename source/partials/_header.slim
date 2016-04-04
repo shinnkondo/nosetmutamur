@@ -1,9 +1,10 @@
 md-toolbar.md-default-theme[ng-controller="HeaderCtrl"]
   .pack
     .md-toolbar-tools
-      = link_to 'Nos et Mutamur', '/index.html', :class => 'home-button'
+      - if current_path !~ /index\.html/
+        = link_to 'Nos et Mutamur', '/index.html', :class => 'home-button'
       span[flex]
-      .header-menu[collapse="!isMenuOpen" layout-sm="column"]
+      .header-menu[collapse="!isMenuOpen" layout="column"]
         md-button href="/#{t :lang}/about.html" About
         - alturl= current_page.data.alturl || translation(current_page.destination_path)
         - if alturl
@@ -11,5 +12,9 @@ md-toolbar.md-default-theme[ng-controller="HeaderCtrl"]
             md-tooltip[md-delay="200"] 
               = current_page.data.altmsg || t(:theotherlangfull)
             md-icon[md-font-set="material-icons" ng-cloak] public
-      button.lines-button.x[hide show-sm md-menu-origin type="button" role="button" aria-label="Toggle Navigation" ng-click="isMenuOpen = !isMenuOpen" ng-class="{close: isMenuOpen}"]
+      button.lines-button.x[
+          hide show-sm show-xs md-menu-origin type="button" 
+          role="button" aria-label="Toggle Navigation" 
+          ng-click="isMenuOpen = !isMenuOpen" ng-class="{close: isMenuOpen}"
+        ]
         span.lines

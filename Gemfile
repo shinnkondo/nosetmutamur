@@ -3,14 +3,16 @@
 source 'http://rubygems.org'
 
 gem "rake"
-gem "middleman", "~> 3.3.12"
-gem "middleman-blog", "~> 3.5.3"
+gem "middleman", "~> 4.1.6"
+gem "middleman-blog", "~> 4.0.0"
+gem "middleman-sprockets", "~> 4.0.0.rc"
+gem "middleman-compass", "~> 4.0.1"
 
 # For feed.xml.builder
 gem "builder", "~> 3.0"
 
 # Live-reloading plugin
-gem "middleman-livereload", "~> 3.1.0"
+gem "middleman-livereload", "~> 3.4.6"
 
 # Syntax highlighting
 gem "middleman-syntax"
