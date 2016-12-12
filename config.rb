@@ -7,18 +7,7 @@ activate :i18n, :langs => [:en, :ja], :mount_at_root => false # すべての言�
 
 activate :gemoji, :size => 18, :style => "vertical-align: middle"
 
-activate :sprockets
-
-sprockets.append_path File.join root, 'dist'
-sprockets.append_path File.join root, 'node_modules/magnific-popup/dist'
-sprockets.append_path File.join root, 'bower_components'
-sprockets.append_path File.join root, 'bower_components/angular-material' # to read scss file, which is not in main in bower.json.
-
-
 Slim::Engine.disable_option_validator!
-# sprockets.import_asset 'animate.css-scss/animate.scss' do |logical_path|
-#   Pathname.new('_') + logical_path
-# end
 ###
 # Blog settings
 ###
@@ -103,18 +92,9 @@ end
 # Build-specific configuration
 configure :build do
   # For example, change the Compass output style for deployment
-  activate :minify_css
   activate :minify_html
-  # Minify Javascript on build
-  activate :minify_javascript
-
   # Enable cache buster
   activate :asset_hash
-
-# Change Compass configuration
-# compass_config do |config|
-#   config.output_style = :compact
-# end
 
   # Use relative URLs
   # activate :relative_assets

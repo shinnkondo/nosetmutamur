@@ -1,9 +1,9 @@
 // @import "animate.css-scss/animate.scss";
 
 @import 
-  "animate.css-scss/properties",
-  "animate.css-scss/_fading-entrances/fadeInLeftBig",
-  "animate.css-scss/_fading-exits/fadeOutRight"
+  "~animatewithsass/properties",
+  "~animatewithsass/_fading-entrances/fadeInLeftBig",
+  "~animatewithsass/_fading-exits/fadeOutRight"
   ;
   
 .view-container {

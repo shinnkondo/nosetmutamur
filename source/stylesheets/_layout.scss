@@ -370,7 +370,7 @@ $level-2-padding: 25px;
 @media (max-width: ($layout-breakpoint-sm)) {
   .header-menu {
     position: absolute;
-    top: $toolbar-tools-height;
+    top: $md-toolbar-medium-tall-height;
     right: 0px;
     background: $primary-color-light;
     width: 100%;

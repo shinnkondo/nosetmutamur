@@ -1,14 +1,14 @@
 
 $brand-primary: $primary-color; 
 @import
-    "bootstrap/variables",
-    "bootstrap/mixins",
-    "bootstrap/code",
-    "bootstrap/tables",
-    "bootstrap/navs",
-    "bootstrap/responsive-embed",
-    "bootstrap/component-animations", 
-    "bootstrap/pagination";
+    "~bootstrap-sass/assets/stylesheets/bootstrap/variables",
+    "~bootstrap-sass/assets/stylesheets/bootstrap/mixins",
+    "~bootstrap-sass/assets/stylesheets/bootstrap/code",
+    "~bootstrap-sass/assets/stylesheets/bootstrap/tables",
+    "~bootstrap-sass/assets/stylesheets/bootstrap/navs",
+    "~bootstrap-sass/assets/stylesheets/bootstrap/responsive-embed",
+    "~bootstrap-sass/assets/stylesheets/bootstrap/component-animations", 
+    "~bootstrap-sass/assets/stylesheets/bootstrap/pagination";
 
 // type.scss is imported partially and manually to prevent it from altering the entire contents.
 

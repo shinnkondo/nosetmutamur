@@ -5,8 +5,6 @@ source 'http://rubygems.org'
 gem "rake"
 gem "middleman", "~> 4.1.6"
 gem "middleman-blog", "~> 4.0.0"
-gem "middleman-sprockets", "~> 4.1.0"
-gem "middleman-compass", "~> 4.0.1"
 
 gem "nokogiri"
 
@@ -28,8 +26,6 @@ gem 'middleman-gemoji'
 # gem 'middleman-deploy', '~> 1.0'
 gem 'middleman-search_engine_sitemap'
 gem 'middleman-minify-html'
-
-gem "bootstrap-sass", :require => false
 
 gem "slim"
 
