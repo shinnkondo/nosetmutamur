@@ -3,7 +3,7 @@ require("bootstrap/js/affix")
 require("bootstrap/js/scrollspy")
 
 $(document).ready(function () {
-  if ($('#toc')) {
+  if ($('#toc').length) {
     $('#toc').exTOC({
       headFrom: 2,
       headTo: 5,

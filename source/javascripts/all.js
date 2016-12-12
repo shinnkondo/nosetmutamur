@@ -6,5 +6,7 @@ require('./article.js')
 require('../stylesheets/main.css.scss')
 
 $(document).ready(function() {
-  $('.img-popup-link').magnificPopup({type:'image', closeOnContentClick: true});
+    if ($('.img-popup-link').length) {
+        $('.img-popup-link').magnificPopup({type:'image', closeOnContentClick: true});
+    }
 });
