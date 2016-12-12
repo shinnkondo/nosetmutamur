@@ -12,8 +12,7 @@ module.exports = {
         rules: [
             { test: /\.coffee$/, loader: "coffee-loader" },
             { test: /\.(coffee\.md|litcoffee)$/, loader: "coffee-loader?literate" },
-            { test: require.resolve('angular') , loader: 'exports-loader?window.angular'},
-            // { test: /extoc/ , loader: 'imports-loader?jQuery=jquery!script-loader'},
+            { test: require.resolve('angular') , loader: 'exports-loader?window.angular'}
         ]
     },
     plugins: [
