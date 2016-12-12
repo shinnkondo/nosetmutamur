@@ -1,5 +1,6 @@
 require("./_include/extoc_1_0.js")
-require("bootstrap")
+require("bootstrap/js/affix")
+require("bootstrap/js/scrollspy")
 
 $(document).ready(function () {
   if ($('#toc')) {
