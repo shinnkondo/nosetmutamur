@@ -6,7 +6,7 @@ category: web
 tags: []
 ---
 
-<!-- more -->
+READMORE
 
 ## List for posts: from Google
 

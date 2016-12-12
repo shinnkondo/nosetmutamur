@@ -1,7 +1,8 @@
-//= require "_include/extoc_1_0"
-//= require "bootstrap/affix"
-//= require "bootstrap/scrollspy"
-$('#toc').exTOC({
+require("./_include/extoc_1_0.js")
+require("bootstrap")
+
+$(window).on('load', function() {
+  $('#toc').exTOC({
     headFrom : 2,
     headTo : 5,
     insertMethod : 'prepend',
@@ -10,6 +11,8 @@ $('#toc').exTOC({
     offset: 5,
     // numbering: false
 });
+});
+
 $('body').scrollspy({ target: '#toc' });
 var initPos = $('#toc').position().top;
 $('#toc').affix({

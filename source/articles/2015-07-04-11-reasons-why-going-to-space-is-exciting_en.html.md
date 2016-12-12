@@ -8,7 +8,7 @@ lead: There is one thing space has that the earth does not; zero gravity.
 ---
 Without arguing, space is exciting. But even decades have passed since we reached the moon, we are far from living in space. As I cannot wait until it comes true, I decided to think about how is a life in space with many other people -not just astronauts.
 
-<!-- more -->
+READMORE
 ## The impact of zero gravity
 
 ### Zero gravity hair style

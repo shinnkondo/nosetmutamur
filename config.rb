@@ -1,4 +1,4 @@
-activate :livereload#, :host => '192.168.1.70', :no_swf => true
+# activate :livereload#, :host => '192.168.1.70', :no_swf => true
 activate :syntax
 set :markdown, :hard_wrap => false, :input => "GFM"
 
@@ -7,6 +7,10 @@ activate :i18n, :langs => [:en, :ja], :mount_at_root => false # すべての言�
 
 activate :gemoji, :size => 18, :style => "vertical-align: middle"
 
+activate :sprockets
+
+sprockets.append_path File.join root, 'dist'
+sprockets.append_path File.join root, 'node_modules/magnific-popup/dist'
 sprockets.append_path File.join root, 'bower_components'
 sprockets.append_path File.join root, 'bower_components/angular-material' # to read scss file, which is not in main in bower.json.
 
@@ -30,8 +34,8 @@ activate :blog do |blog|
   blog.permalink = "{lang}/{year}/{month}/{day}/{title}.html" 
   # blog.taglink = "tags/{tag}.html"
   blog.layout = "article"
-  blog.summary_separator = "<!-- more -->"
-  blog.summary_length = -1
+  # blog.summary_separator = /(<!-- more -->)/  # html comment does not work?
+  # blog.summary_length = false
   # blog.year_link = "{lang}/{year}.html"
   # blog.month_link = "{lang}/{year}/{month}.html"
   # blog.day_link = "{lang}/{year}/{month}/{day}.html"
@@ -130,3 +134,9 @@ configure :build do
 #   # deploy.strategy = :submodule      # commit strategy: can be :force_push or :submodule, default: :force_push
 #   # deploy.commit_message = 'custom-message'      # commit message (can be empty), default: Automated commit at `timestamp` by middleman-deploy `version`
 # end
+
+activate :external_pipeline,
+  name: :webpack,
+  command: build? ? 'npm run build' : 'npm run watch',
+  source: "dist",
+  latency: 1

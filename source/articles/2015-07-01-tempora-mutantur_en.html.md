@@ -12,7 +12,7 @@
 </blockquote>
 Times change, and we change with them.
 
-<!-- more -->
+READMORE
 
 ## How I found it
 

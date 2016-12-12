@@ -60,7 +60,7 @@
 	$j.ex.headEach = function(nodes,lv,nums,data,c){
 		var heads;
 		while(
-			(heads = $j.ex.filterAndFind('h'+lv,nodes)).size() == 0 && lv < c.headTo
+			(heads = $j.ex.filterAndFind('h'+lv,nodes)).length == 0 && lv < c.headTo
 		){lv++;};
 	
 		var nums = $j.ex.margeArray([],nums);
@@ -131,9 +131,7 @@
 			smooth : true,
 			easing : 'swing',
 			speed : 'slow',
-			contentsScroller : $j('html, body'),
-			ulclass:"",
-			offset: 0
+			contentsScroller : $j.boxModel && !$.browser.safari ? $j('html') : $j('body')
 		},cfg);
 
 		c.contents = $j(c.contents);
@@ -143,7 +141,7 @@
 			headTo : c.headTo,
 			callback : function( prm , data , cfg ){
 				if( !data.ctnr )data.ctnr = c.container;
-				if(prm.headNodes.size()==0)return;
+				if(prm.headNodes.length==0)return;
 				data.grp = o._insGroup( data.ctnr , prm.level );
 				if(prm.level.length==1)c.toc = data.grp;
 			},
@@ -154,7 +152,7 @@
 	}
 	$j.extend($j.ex.TOC.prototype,{
 		getTOC : function(){
-			return this.cfg.toc;
+			return this.cfg.toc;			
 		},
 		_getNText : function(tag,text,cls,prp){
 			return '<' + tag + ' class="' + cls + '" ' + (prp?prp:'') + '>' + text + '</' + tag + '>';
@@ -180,7 +178,8 @@
 			var o = this,c = o.cfg;
 			var nlen = nums.length;
 			var cls = nlen == 1?'ex-toc ':'';
-			cls += c.ulclass + ' ex-toc-' + nlen;
+			cls += 'ex-toc-' + nlen;
+		
 			var grp = $j(o._getNText('ul','',cls));
 	
 			if(c.index)cntr[nlen-1 ? 'append' : c.insertMethod](grp);
@@ -220,7 +219,7 @@
 			if( !c.link || !c.smooth )return;
 			link.click( function(){
 				c.contentsScroller.animate({
-					'scrollTop' : (head.offset().top-c.offset)
+					'scrollTop' : head.offset().top
 				}, c.speed , c.easing )
 				return false;
 			})

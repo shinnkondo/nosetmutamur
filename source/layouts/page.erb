@@ -1,14 +1,10 @@
 <% wrap_layout :default do %>
-  <%= partial "partials/header" %>
-  <%= yield %>
-  <%= partial "partials/footer" %>
-  <script src='https://code.jquery.com/jquery-2.2.2.min.js'></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-animate.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-aria.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-sanitize.min.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.3/angular-route.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-material/1.0.7/angular-material.min.js"></script>
-  <%= javascript_include_tag "all" %>
-  <%= if content_for?(:assets) then yield_content :assets end%>
+  <div ng-app="NosApp">
+    <%= partial "partials/header" %>
+    <%= yield %>
+    <%= partial "partials/footer" %>
+    
+  </div>
+<%= javascript_include_tag "main" %>
+<%= if content_for?(:assets) then yield_content :assets end%>
 <% end %>

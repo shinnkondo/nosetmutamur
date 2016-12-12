@@ -1,3 +1,13 @@
+require('./_include/ui-bootstrap-custom-0.13.0')
+require('angular-material')
+require('angular-utils-pagination/dirPagination')
+require('angular-route')
+require('angular-aria')
+require('angular-animate')
+require('angular-sanitize')
+
+PourOver = require("pourover")
+
 app = angular
     .module 'NosApp', ['ngMaterial', 'ui.bootstrap', 'ngSanitize', 'ngRoute', 'nosControllers', 'angularUtils.directives.dirPagination']
 app.config ['$mdThemingProvider', ($mdThemingProvider) ->
@@ -6,7 +16,9 @@ app.config ['$mdThemingProvider', ($mdThemingProvider) ->
             .primaryPalette 'blue-grey'
             .accentPalette 'deep-purple'
     ]
-
+app.config(['$qProvider',  ($qProvider) ->
+    $qProvider.errorOnUnhandledRejections(false);
+])
 app.controller 'VersionInfoCtrl',['$scope', ($scope) -> $scope.isCollapsed = true]
 
       
@@ -25,28 +37,32 @@ nosControllers.factory 'search', ['$location', '$q', '$http', '$sce', ($location
     
 
     article_promise = $http.get '/articles.json', {'cache': true}
-    article_promise.success (data) ->
-        articles = data
+    article_promise.then (response) ->
+        data1 = response.data
+        articles = data1
         articles.summary = $sce.trustAsHtml articles.summary
         collection = new PourOver.Collection articles
         view = new PourOver.View("default_view", collection)
 
     s.meta_promise = $http.get '/metadata.json', {'cache': true}
-    s.meta_promise.success (data) ->
-        filters.push PourOver.makeExactFilter(s.CAT, data.categories)
-        for lang in data.langs
+    s.meta_promise.then (response) ->
+        data2 = response.data
+        filters.push PourOver.makeExactFilter(s.CAT, data2.categories)
+        for lang in data2.langs
             re = new RegExp("/"+lang+"/")
             if $location.absUrl().match(re)
                 s.lang =  lang
-        filters.push PourOver.makeExactFilter(s.LANG, data.langs)
-        filters.push PourOver.makeInclusionFilter(s.TAG, data.tags)
+        filters.push PourOver.makeExactFilter(s.LANG, data2.langs)
+        filters.push PourOver.makeInclusionFilter(s.TAG, data2.tags)
     s.init_done = $q.all([article_promise, s.meta_promise])
-    s.init_done.then () ->
+    s.init_done.then(() ->
         collection.addFilters(filters)
         # update query by interpretting URL
         clear_or_update_query(s.CAT, s.category())
         clear_or_update_query(s.TAG, s.tags())
         clear_or_update_query(s.LANG, s.lang)
+    ,() -> console.log "init failed!"
+    )
 
     
 
@@ -85,10 +101,12 @@ nosControllers.factory 'search', ['$location', '$q', '$http', '$sce', ($location
 nosControllers.controller 'ArticleListCtrl',
     ['$scope', 'search', ($scope, search) ->
         search.expose($scope)
-        search.init_done.then () ->
+        search.init_done.then(() ->
             update()
             $scope.$on '$locationChangeSuccess', (event, current) ->
                 update()
+        ,() -> console.log "init failed!"
+        )
         update = ()-> $scope.articles = search.getCurrentItems()
         $scope.tagClicked = (tag) ->
             search.toggleSearch(search.TAG, tag)
@@ -99,7 +117,8 @@ nosControllers.controller 'ArticleListCtrl',
 nosControllers.controller 'MyIndexCtrl',
     ['$scope', 'search', ($scope, search) ->
         search.expose($scope)
-        search.meta_promise.success (data) ->
+        search.meta_promise.then (response) ->
+            data = response.data
             $scope.categories = data.categories
             $scope.categories.unshift search.ALL
             $scope.categorylang = data.category_lang

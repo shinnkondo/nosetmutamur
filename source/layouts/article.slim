@@ -48,5 +48,3 @@
               = " | " if i != 0
               = link_to "#{tag} (#{blog.tags[tag].length})", "/#?tags=#{tag}"
           #toc.table-of-contents[hide show-gt-md]
-  - content_for :assets do
-    - javascript_include_tag "article"

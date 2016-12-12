@@ -7,7 +7,7 @@ lead: There are some notions that are either well known or useful, yet do not ow
 ---
 It is odd that some established notions (e.g. a lesson from your life which seems general) do not have terms associated with them. What are such notions? Who would, and how can the person name them?
 
-<!-- more -->
+READMORE
 
 ## Examples of such notions without names
 
