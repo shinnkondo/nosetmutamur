@@ -206,6 +206,7 @@ $col-side-width: ($layout-breakpoint-sm - 4 * $layout-gutter-width - $pack-horiz
   list-style: none;
   padding: 0;
   overflow: auto;
+  justify-content: center;
   > li {
     > a {
       border-radius: 0;
@@ -443,6 +444,9 @@ a.gray-link {
     text-align: center;
     padding-top: 20px;  
     padding-right: 8px;
+    flex: none;
+    width: 60px;
+
     .day {
         font-size: $display-1-font-size-base;
          @media (min-width: ($layout-breakpoint-sm)) {
