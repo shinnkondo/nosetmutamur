@@ -4,7 +4,7 @@ md-toolbar.md-default-theme[ng-init="isMenuOpen = false"]
       - if current_path !~ /index\.html/
         = link_to 'Nos et Mutamur', '/index.html', :class => 'home-button'
       span[flex]
-      .header-menu[collapse="!isMenuOpen" layout="column"]
+      .header-menu[uib-collapse="!isMenuOpen" layout="row"]
         md-button href="/#{t :lang}/about.html" About
         - alturl= current_page.data.alturl || translation(current_page.destination_path)
         - if alturl
