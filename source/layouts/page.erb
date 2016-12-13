@@ -3,7 +3,6 @@
     <%= partial "partials/header" %>
     <%= yield %>
     <%= partial "partials/footer" %>
-    
   </div>
 <%= if content_for?(:assets) then yield_content :assets end%>
 <% end %>

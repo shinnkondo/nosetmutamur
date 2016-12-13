@@ -29,6 +29,8 @@ gem 'middleman-minify-html'
 
 gem "slim"
 
+gem "typescript-node" # not used, but needed until Middleman can safely ignore ts files. https://github.com/middleman/middleman/issues/2012
+
 ### Development
 # For faster file watcher updates on Windows:
 gem "wdm", "~> 0.1.0", :platforms => [:mswin, :mingw, :x64_mingw]

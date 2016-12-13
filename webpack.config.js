@@ -2,16 +2,20 @@
 const webpack = require('webpack');
 const path = require('path');
 
+const { CheckerPlugin } = require('awesome-typescript-loader')
+
 module.exports = [{
-        entry: './source/javascripts/all.js',
+        resolve: {
+            extensions: ['.ts', '.tsx', '.js', '.jsx']
+        },
+        entry: './source/javascripts/index.ts',
         output: {
             path: path.resolve(__dirname, 'dist'),
             filename: 'main.js',
         },
         module: {
             rules: [
-                { test: /\.coffee$/, loader: "coffee-loader" },
-                { test: /\.(coffee\.md|litcoffee)$/, loader: "coffee-loader?literate" },
+                { test: /\.ts$/, loader: "awesome-typescript-loader" },
                 { test: require.resolve('angular') , loader: 'exports-loader?window.angular'},
                 {
                     test: /\.scss$/,
@@ -21,6 +25,10 @@ module.exports = [{
                     test: /\.css$/,
                     loaders: ["style-loader", "css-loader"]
                 },
+                {
+                    test: /\.html$/,
+                    loader: ['ngtemplate-loader?requireAngular', 'html-loader']
+                }
             ]
         },
         plugins: [
@@ -29,7 +37,8 @@ module.exports = [{
                 jQuery: "jquery",
                 angular: "angular",
                 _: "underscore"
-            })
+            }),
+            new CheckerPlugin()
         ],
         devtool: "source-map"
     }

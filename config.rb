@@ -80,8 +80,8 @@ helpers do
   end
 end
 
-set :css_dir, 'stylesheets'
-set :js_dir, 'javascripts'
+set :css_dir, 'css'
+set :js_dir, 'js'
 set :images_dir, 'images'
 
 configure :development do

@@ -1,0 +1,27 @@
+<md-list ng-cloak="">
+    <md-list-item class="md-2-line article-listing" dir-paginate="article in $ctrl.articles | itemsPerPage: 10">
+        <div class="time-info">
+            <span class="day">
+            {{ article.date | date:'d' }}
+        </span>
+            <br/>
+            <span class="month-year">
+            {{ article.date | date:'MMM, yyyy' }}
+        </span>
+        </div>
+        <div class="md-list-item-text post-info">
+            <h3 class="post-info-title">
+                <a href="{{article.url}}" class="gray-link">{{article.title}}</a>
+            </h3>
+            <div ng-bind-html="article.summary"></div>
+            <span ng-repeat="tag in article.tags">
+                <span ng-if="!$first">
+                    |
+                </span>
+            <a class="gray-link tag" ng-class="{active: $ctrl.isActive(tag)}" ng-click="$ctrl.tagClicked(tag)">
+                        {{tag}}
+                </a>
+            </span>
+        </div>
+    </md-list-item>
+</md-list>

@@ -1,4 +1,5 @@
-require("./_include/extoc_1_0.js")
+var $ = require("jquery")
+require("../lib/extoc_1_0.js")
 require("bootstrap/js/affix")
 require("bootstrap/js/scrollspy")
 
