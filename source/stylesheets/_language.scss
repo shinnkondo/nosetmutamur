@@ -32,6 +32,9 @@ $base-line-height: 26px;
     }
     .page-content, .article-content {
         font-family: "ヒラギノ角ゴ Pro W3","メイリオ","Meiryo",sans-serif;
+        @media (-webkit-min-device-pixel-ratio: 1.25), (min-resolution: 144dpi) { 
+            font-family:"游ゴシック Medium", "Yu Gothic Medium", "游ゴシック体", YuGothic, "ヒラギノ角ゴ Pro W3","メイリオ","Meiryo",sans-serif;
+        }
         > h2 {
             @include adjust-font-size-to($headline-font-size-base);
             @include leader(1.5);
