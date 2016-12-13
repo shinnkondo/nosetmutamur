@@ -1,7 +1,7 @@
 - if ver
   div ng-init= "isCollapsed = true"
     md-button.md-raised.md-primary ng-click= "isCollapsed = !isCollapsed" Version Info
-    #version_detail.table-responsive collapse= "isCollapsed" flex=""
+    #version_detail.table-responsive uib-collapse= "isCollapsed" flex=""
       table.table
         tbody
           - ver.each do |name, vernum|
