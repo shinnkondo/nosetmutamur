@@ -8,10 +8,13 @@ module.exports = [{
         resolve: {
             extensions: ['.ts', '.tsx', '.js', '.jsx']
         },
-        entry: './source/javascripts/index.ts',
+        entry: {
+            main: './source/javascripts/index.ts',
+            vendor: './source/javascripts/lib/index.ts'
+        },
         output: {
             path: path.resolve(__dirname, 'dist'),
-            filename: 'main.js',
+            filename: '[name].js',
         },
         module: {
             rules: [
@@ -38,9 +41,12 @@ module.exports = [{
                 angular: "angular",
                 _: "underscore"
             }),
-            new CheckerPlugin()
+            new CheckerPlugin(),
+            new webpack.optimize.CommonsChunkPlugin({
+                names: ['vendor', 'manifest'] // Specify the common bundle's name.
+            })
         ],
-        devtool: "source-map"
+        devtool: "cheap-eval-source-map"
     }
 ]
 
