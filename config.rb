@@ -1,4 +1,4 @@
-# activate :livereload#, :host => '192.168.1.70', :no_swf => true
+activate :livereload#, :host => '192.168.1.70', :no_swf => true
 activate :syntax
 set :markdown, :hard_wrap => false, :input => "GFM"
 

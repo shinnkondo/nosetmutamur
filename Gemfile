@@ -12,7 +12,7 @@ gem "nokogiri"
 gem "builder", "~> 3.0"
 
 # Live-reloading plugin
-# gem "middleman-livereload", "~> 3.4.6"
+gem "middleman-livereload", "~> 3.4.6"
 
 # Syntax highlighting
 gem "middleman-syntax"
