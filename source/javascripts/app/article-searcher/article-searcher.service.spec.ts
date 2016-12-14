@@ -1,4 +1,4 @@
-import '../app.module'
+import '../angularOneApp'
 
 import * as angular from 'angular'
 import 'angular-mocks'
