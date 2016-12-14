@@ -1,6 +1,7 @@
 const PourOver = require('pourover')
 import * as t from './article-searcher.const'
-
+import Article from './article.model'
+import Metadata from './metadata.model'
 
 export default class ArticleSearchService {
 
@@ -9,7 +10,7 @@ export default class ArticleSearchService {
     view: any
     searchQuery: SearchQuery
     filters: any[]
-    metadataPromise: ng.IHttpPromise<any>
+    metadataPromise: ng.IHttpPromise<Metadata>
     initializationDonePromise: ng.IPromise<any>;
 
     constructor(private $location:ng.ILocationService, $q:ng.IQService, $http:ng.IHttpService, $sce:ng.ISCEService) {
@@ -18,20 +19,22 @@ export default class ArticleSearchService {
         let articlePromise = $http.get('/articles.json', {
             'cache': true
         });
-        articlePromise.then((response) => {
-            let articles: any = response.data
-            articles.summary = $sce.trustAsHtml(articles.summary);
+        articlePromise.then((response: ng.IHttpPromiseCallbackArg<Article[]>) => {
+            let articles: Article[] = response.data
+            for (let article of articles) {
+                article.summary = $sce.trustAsHtml(article.summary);
+            }
             this.collection = new PourOver.Collection(articles);
-            return this.view = new PourOver.View("default_view", this.collection);
+            this.view = new PourOver.View("default_view", this.collection);
         });
         this.metadataPromise = $http.get('/metadata.json', {
             'cache': true
         });
         this.metadataPromise.then((response) => {
-            let metadata: any = response.data;
+            let metadata = response.data;
             this.filters.push(PourOver.makeExactFilter(t.CAT, metadata.categories));
 
-            for (let lang in metadata.langs) {
+            for (let lang of metadata.langs) {
                 let re = new RegExp("/" + lang + "/")
                 if (this.$location.absUrl().match(re)) {
                     this.searchQuery.lang = lang
