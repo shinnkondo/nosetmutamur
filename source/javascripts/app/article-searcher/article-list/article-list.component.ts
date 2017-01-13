@@ -13,7 +13,6 @@ export class ArticleListComponentController implements ng.IController {
     articles: any[]
 
     constructor($scope: ng.IScope, private search: ArticleSearcherService) {
-        search.expose($scope);
         search.initializationDonePromise.then( () => {
             this.update();
             return $scope.$on('$locationChangeSuccess', (event, current) => {

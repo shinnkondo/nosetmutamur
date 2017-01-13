@@ -45,12 +45,7 @@ export default class ArticleSearchService {
             this.filters.push(PourOver.makeInclusionFilter(t.TAG, metadata.tags));
         })
         this.initializationDonePromise = $q.all([articlePromise, this.metadataPromise])
-        this.initializationDonePromise.then(() => {
-            this.collection.addFilters(this.filters);
-            this.clearOrUpdateQuery(t.CAT, this.category());
-            this.clearOrUpdateQuery(t.TAG, this.tags());
-            this.clearOrUpdateQuery(t.LANG, this.searchQuery.lang);
-      }, (error) => {
+        this.initializationDonePromise.then(this.updateByLocation, (error) => {
         return console.log("init failed! " + error );
       });
     }
@@ -62,24 +57,34 @@ export default class ArticleSearchService {
           return this.collection.filters[name].query(value);
         }
     }
+    public updateByLocation() {
+        if (this.collection) {
+            this.collection.addFilters(this.filters);
+            this.clearOrUpdateQuery(t.CAT, this.getCategory());
+            this.clearOrUpdateQuery(t.TAG, this.getTags());
+            this.clearOrUpdateQuery(t.LANG, this.searchQuery.lang);
+        }
+
+    }
+
     getCurrentItems() {
         return this.view.getCurrentItems();
     }
-    category() {
+
+    getCategory() {
         return this.$location.search()[t.CAT];
     };
-    tags() {
+
+    getTags() {
         return this.$location.search()[t.TAG];
     };
-    expose (scope: ISearchScope) {
-        scope.loc = () => {
-          return this.$location.search();
-        };
-    };
+
     search(name:string, value:string ) {
-        this.clearOrUpdateQuery(name, value);
         return this.$location.search(name, value);
     };
+    searchByObject(Obj: any) {
+        return this.$location.search(Obj)
+    }
     toggleSearch (name: string, value: string) {
         if (this.isQueried(name, value)) {
           value = null;

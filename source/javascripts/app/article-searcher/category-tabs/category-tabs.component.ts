@@ -13,12 +13,11 @@ export class CategoryTabsComponentController implements ng.IController {
 
     static $inject = ['$scope', 'ArticleSearcherService']
     static CAT = t.CAT
-    current: string
+    currentCategory: string
     categories: string[]
     categoryLang: any
 
     constructor(private $scope: ng.IScope, private articleSearcherService: ArticleSearcherService) {
-        articleSearcherService.expose($scope)
         articleSearcherService.metadataPromise.then((response) => {
             let data: any = response.data;
             this.categories = data.categories;
@@ -26,7 +25,9 @@ export class CategoryTabsComponentController implements ng.IController {
             this.categoryLang = data.category_lang;
         });
         $scope.$on('$locationChangeSuccess', (event, current) => {
-            return this.current = typeof this.articleSearcherService.category() === "undefined" ? t.ALL : this.articleSearcherService.category();
+                this.articleSearcherService.updateByLocation()
+                let locCategory = this.articleSearcherService.getCategory()
+                this.currentCategory = typeof locCategory === "undefined" ? t.ALL : locCategory
         });
    }
 
@@ -35,10 +36,12 @@ export class CategoryTabsComponentController implements ng.IController {
    };
 
    isSelected(cat: string): boolean {
-        return cat === this.current;
+        return cat === this.currentCategory;
    };
    tabClicked(cat:string) {
-        this.articleSearcherService.search(t.CAT, cat);
-        this.articleSearcherService.search(t.TAG, "");
+        let search: any = {}
+        search[t.CAT] = cat
+        search[t.TAG] = ""
+        this.articleSearcherService.searchByObject(search);
    }
 }
