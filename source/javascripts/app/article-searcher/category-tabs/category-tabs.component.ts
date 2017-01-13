@@ -24,11 +24,17 @@ export class CategoryTabsComponentController implements ng.IController {
             this.categories.unshift(t.ALL);
             this.categoryLang = data.category_lang;
         });
-        $scope.$on('$locationChangeSuccess', (event, current) => {
-                this.articleSearcherService.updateByLocation()
-                let locCategory = this.articleSearcherService.getCategory()
-                this.currentCategory = typeof locCategory === "undefined" ? t.ALL : locCategory
-        });
+        articleSearcherService.initializationDonePromise.then(() => {
+            this.update()
+            $scope.$on('$locationChangeSuccess',() => {this.update()});
+        })
+
+   }
+
+   private update () {
+        this.articleSearcherService.updateByLocation()
+        let locCategory = this.articleSearcherService.getCategory()
+        this.currentCategory = typeof locCategory === "undefined" ? t.ALL : locCategory
    }
 
    shouldCategoryBeHidden(cat: string) {
