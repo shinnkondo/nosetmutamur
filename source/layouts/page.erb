@@ -1,8 +1,6 @@
 <% wrap_layout :default do %>
-  <div ng-app="NosApp">
-    <%= partial "partials/header" %>
-    <%= yield %>
-    <%= partial "partials/footer" %>
-  </div>
+  <%= partial "partials/header" %>
+  <%= yield %>
+  <%= partial "partials/footer" %>
 <%= if content_for?(:assets) then yield_content :assets end%>
 <% end %>

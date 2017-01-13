@@ -38,6 +38,14 @@
   "author": "Shinnosuke Kondo",
   "license": "UNLICENSED",
   "dependencies": {
+    "@angular/common": "^2.3.0",
+    "@angular/compiler": "^2.3.0",
+    "@angular/core": "^2.3.0",
+    "@angular/http": "^2.3.0",
+    "@angular/platform-browser": "^2.3.0",
+    "@angular/platform-browser-dynamic": "^2.3.0",
+    "@angular/router": "^3.3.0",
+    "@angular/upgrade": "^2.3.0",
     "angular": "^1.6.0",
     "angular-animate": "^1.6.0",
     "angular-aria": "^1.6.0",
@@ -50,9 +58,12 @@
     "bootstrap": "^3.3.7",
     "bootstrap-sass": "^3.3.7",
     "compass-mixins": "^0.12.10",
+    "core-js": "^2.4.1",
     "jquery": "^3.1.1",
     "magnific-popup": "^1.1.0",
     "pourover": "^1.2.0",
-    "underscore": "^1.8.3"
+    "rxjs": "5.0.0-rc.4",
+    "underscore": "^1.8.3",
+    "zone.js": "0.7.2"
   }
 }

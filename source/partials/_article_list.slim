@@ -9,16 +9,4 @@ div layout="row"
     .text-center
       dir-pagination-controls
       /! start fall back for noscript / seo
-      md-list
-        - articles = (local)? blog.local_articles : page_articles
-        - articles.each_with_index do |article, i|
-          md-list-item.md-2-line ng-hide= "true"
-            .time-info
-              span.day = article.date.strftime('%e')
-              br/
-              span.month-year = article.date.strftime('%b, %Y')
-            .md-list-item-text.post-info
-              h3.post-info-title
-                = link_to titleize(article.title), article, :class => "gray-link"
-              = article.summary()
-      /! end fall back for noscript / seo
+   

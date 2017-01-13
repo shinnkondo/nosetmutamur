@@ -9,6 +9,7 @@ module.exports = [{
         extensions: ['.ts', '.tsx', '.js', '.jsx']
     },
     entry: {
+        polyfill: './source/javascripts/polyfill.ts',
         main: './source/javascripts/index.ts'
     },
     output: {
@@ -31,6 +32,10 @@ module.exports = [{
             {
                 test: /\.html$/,
                 loader: ['ngtemplate-loader?requireAngular', 'html-loader']
+            },
+            {
+                test: /angular_js\.js/,
+                loader: ['imports-loader?window.angular=angular']
             }
         ]
     },
@@ -39,6 +44,7 @@ module.exports = [{
             $: "jquery",
             jQuery: "jquery",
             angular: "angular",
+            // "window.angular": "angular",
             _: "underscore"
         }),
         new CheckerPlugin(),
@@ -49,9 +55,13 @@ module.exports = [{
             }
         ], {
                 manifest: 'app-entry'
-        })
+            }),
+        new webpack.ContextReplacementPlugin(
+            /angular(\\|\/)core(\\|\/)(esm(\\|\/)src|src)(\\|\/)linker/,
+            __dirname
+        ) // for angular2 to supress warning during build.
     ],
-    devtool: "cheap-eval-source-map"
+    devtool: "source-map"
 }
 ]
 
