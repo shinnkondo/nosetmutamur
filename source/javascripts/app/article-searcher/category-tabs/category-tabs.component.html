@@ -1,7 +1,7 @@
  <div>
       <ul class="nos-tabs" layout="row">
           <li ng-repeat="cat in $ctrl.categories">
-            <md-button ng-class="{active: $ctrl.isSelected(cat)}" ng-click="$ctrl.tabClicked(cat)" ng-cloak="" ng-hide="$ctrl.shouldCategoryBeHidden(cat)" ng-href="#?{{$ctrl.CAT}}={{$ctrl.cat}}">
+            <md-button ng-class="{active: $ctrl.isSelected(cat)}" ng-click="$ctrl.tabClicked(cat)" ng-cloak="" ng-hide="$ctrl.shouldCategoryBeHidden(cat)" >
                 {{cat}}
                 </md-button>
           </li>
