@@ -46,5 +46,5 @@ Google Sitesの場合は、
     <dt>GitHub</dt>
     <dd>Gitをホストしているウェブサイトです。</dd>
     <dt>GitHub Pages</dt>
-    <dd></dd>{GitHubに挙げられたページを、自動的にウェブサイトとして配信してくれるサービスです。}
+    <dd>GitHubに挙げられたページを、自動的にウェブサイトとして配信してくれるサービスです。</dd>
 </dl>
